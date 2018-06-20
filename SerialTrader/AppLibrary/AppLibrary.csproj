@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1E0A0FC3-6272-4918-A9A4-D47BFA643ACC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AppLibrary</RootNamespace>
+    <AssemblyName>AppLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.5.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.5.1\lib\net45\Google.Protobuf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.12.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.12\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF5, Version=6.7.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.7.9\lib\net45\MySql.Data.Entity.EF5.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Business\ActivityLogBusinessService.cs" />
+    <Compile Include="Business\AdminBusinessRules.cs" />
+    <Compile Include="Business\AdminBusinessService.cs" />
+    <Compile Include="Business\ApplicationInitializationBusinessService.cs" />
+    <Compile Include="Business\ClientBusinessRules.cs" />
+    <Compile Include="Business\ClientBusinessService.cs" />
+    <Compile Include="Business\ContactBusinessRules.cs" />
+    <Compile Include="Business\ContactBusinessService.cs" />
+    <Compile Include="Business\UserBusinessRules.cs" />
+    <Compile Include="Business\UserBusinessService.cs" />
+    <Compile Include="Common\Constants.cs" />
+    <Compile Include="Common\EmailSender.cs" />
+    <Compile Include="Common\TransactionalInformation.cs" />
+    <Compile Include="Common\Utils.cs" />
+    <Compile Include="Common\ValidationRules.cs" />
+    <Compile Include="Common\Validations.cs" />
+    <Compile Include="Common\WebUtils.cs" />
+    <Compile Include="DataService\ActivityLogDataService.cs" />
+    <Compile Include="DataService\AdminDataService.cs" />
+    <Compile Include="DataService\ApplicationDataService.cs" />
+    <Compile Include="DataService\ClientDataService.cs" />
+    <Compile Include="DataService\ContactDataService.cs" />
+    <Compile Include="DataService\EntityFrameworkDataService.cs" />
+    <Compile Include="DataService\PackageDataService.cs" />
+    <Compile Include="DataService\UserDataService.cs" />
+    <Compile Include="Entity\AdminInfo.cs" />
+    <Compile Include="Entity\ApplicationInfo.cs" />
+    <Compile Include="Entity\ContactInfo.cs" />
+    <Compile Include="Entity\RegisterInfo.cs" />
+    <Compile Include="Entity\TransactionalInfo.cs" />
+    <Compile Include="Entity\UserInfo.cs" />
+    <Compile Include="Interfaces\IActivityLogDataService.cs" />
+    <Compile Include="Interfaces\IAdminDataService.cs" />
+    <Compile Include="Interfaces\IApplicationDataService.cs" />
+    <Compile Include="Interfaces\IClientDataService.cs" />
+    <Compile Include="Interfaces\IContactDataService.cs" />
+    <Compile Include="Interfaces\Interfaces.cs" />
+    <Compile Include="Interfaces\IPackageDataService.cs" />
+    <Compile Include="Interfaces\IUserDataService.cs" />
+    <Compile Include="Model\SerialTraderModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SerialTraderModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SerialTraderModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SerialTraderModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SerialTraderModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SerialTraderModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\taccount.cs">
+      <DependentUpon>SerialTraderModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\texchanx.cs">
+      <DependentUpon>SerialTraderModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tkey.cs">
+      <DependentUpon>SerialTraderModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tmarket.cs">
+      <DependentUpon>SerialTraderModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tmarkettick.cs">
+      <DependentUpon>SerialTraderModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tmastertrade.cs">
+      <DependentUpon>SerialTraderModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tprice.cs">
+      <DependentUpon>SerialTraderModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ttrade.cs">
+      <DependentUpon>SerialTraderModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ttradestosync.cs">
+      <DependentUpon>SerialTraderModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tworker.cs">
+      <DependentUpon>SerialTraderModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\tworkerassignment.cs">
+      <DependentUpon>SerialTraderModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="Model\SerialTraderModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SerialTraderModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\SerialTraderModel.edmx.diagram">
+      <DependentUpon>SerialTraderModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\SerialTraderModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SerialTraderModel.edmx</DependentUpon>
+      <LastGenOutput>SerialTraderModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\SerialTraderModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SerialTraderModel.edmx</DependentUpon>
+      <LastGenOutput>SerialTraderModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\respond.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

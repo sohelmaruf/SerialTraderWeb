@@ -1,0 +1,551 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="serialtraderModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="taccount">
+          <Key>
+            <PropertyRef Name="ACCOUNTID" />
+          </Key>
+          <Property Name="ACCOUNTID" Type="bigint" Nullable="false" />
+          <Property Name="FIRSTNAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LASTNAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMAILADDRESS" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ISENABLED" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="POSTTOSLACK" Type="varchar" MaxLength="5" />
+          <Property Name="SLACKBOTCHANNEL" Type="varchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="texchanges">
+          <Key>
+            <PropertyRef Name="EXCHANGEID" />
+          </Key>
+          <Property Name="EXCHANGEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EXCHANGE" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="TRADINGENABLED" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="MARKETPAIRSENABLED" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tkeys">
+          <Key>
+            <PropertyRef Name="KEYID" />
+          </Key>
+          <Property Name="KEYID" Type="bigint" Nullable="false" />
+          <Property Name="ACCOUNTID" Type="bigint" Nullable="false" />
+          <Property Name="EXCHANGE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="APIKEY" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="APISECRET" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="PASSPHRASE" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tmarkets">
+          <Key>
+            <PropertyRef Name="MarketID" />
+          </Key>
+          <Property Name="MarketID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EXCHANGE" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="EXCHANGEMARKET" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="STMARKET" Type="varchar" MaxLength="45" />
+          <Property Name="BASECURRENCY" Type="varchar" MaxLength="45" />
+          <Property Name="MARKETCURRENCY" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="tmarketticks">
+          <Key>
+            <PropertyRef Name="tTickID" />
+          </Key>
+          <Property Name="tTickID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Exchange" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Market" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BaseVolume" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="TickClose" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="TickHigh" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="TickLow" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="TickOpen" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="TimeStamp" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Volume" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="TickType" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tmastertrades">
+          <Key>
+            <PropertyRef Name="MASTERID" />
+          </Key>
+          <Property Name="MASTERID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ACCOUNTID" Type="bigint" Nullable="false" />
+          <Property Name="EXCHANGE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TRADETYPE" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="TRADINGPAIR" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BUYPRICE" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="BUYQUANTITY" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="BUYTOTAL" Type="decimal" Precision="18" Scale="10" />
+          <Property Name="SELLPRICE" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="SELLQUANTITY" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="FIRSTACTION" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="LASTRUN" Type="timestamp" Precision="0" />
+          <Property Name="NEXTRUN" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RUNFREQUENCY" Type="bigint" Nullable="false" />
+          <Property Name="RUNLIMIT" Type="bigint" Nullable="false" />
+          <Property Name="RUNCOUNT" Type="bigint" Nullable="false" />
+          <Property Name="ACTIVE" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="SELLTOTAL" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.serialtrader.tprices' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tprices">
+          <Key>
+            <PropertyRef Name="PriceID" />
+          </Key>
+          <Property Name="PriceID" Type="bigint" Nullable="false" />
+          <Property Name="Exchange" Type="varchar" MaxLength="50" />
+          <Property Name="Market" Type="varchar" MaxLength="50" />
+          <Property Name="LastPrice" Type="decimal" Precision="18" Scale="8" />
+          <Property Name="Bid" Type="decimal" Precision="18" Scale="8" />
+          <Property Name="Buy" Type="decimal" Precision="18" Scale="8" />
+          <Property Name="Volume" Type="decimal" Precision="18" Scale="8" />
+          <Property Name="TimeStamp" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="ttrade">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ACCOUNTID" Type="bigint" Nullable="false" />
+          <Property Name="EXCHANGE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MASTERID" Type="bigint" />
+          <Property Name="TRADEGROUPID" Type="varchar" MaxLength="64" />
+          <Property Name="TRADINGACTION" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="TRADINGPAIR" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="TRADINGPRICE" Type="decimal" Precision="18" Scale="10" Nullable="false" />
+          <Property Name="ACTUALRATE" Type="decimal" Precision="18" Scale="10" />
+          <Property Name="TRADINGQTY" Type="decimal" Precision="18" Scale="8" />
+          <Property Name="TOTAL" Type="decimal" Precision="18" Scale="10" />
+          <Property Name="ORDERID" Type="varchar" MaxLength="50" />
+          <Property Name="ORDERSTATUS" Type="varchar" MaxLength="50" />
+          <Property Name="DATETIME" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ORDERRESULT" Type="longtext" />
+          <Property Name="RETRYIFCANCELED" Type="varchar" MaxLength="3" />
+          <Property Name="USEEXCHANGEPRICE" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="ERRORRESULT" Type="longtext" />
+        </EntityType>
+        <EntityType Name="ttradestosync">
+          <Key>
+            <PropertyRef Name="SYNCID" />
+          </Key>
+          <Property Name="SYNCID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ACCOUNTID" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="MARKET" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="LASTSYNC" Type="timestamp" Precision="0" />
+          <Property Name="ENABLED" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="EXCHANGE" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tworkerassignments">
+          <Key>
+            <PropertyRef Name="ASSIGNMENTID" />
+          </Key>
+          <Property Name="ASSIGNMENTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WORKERID" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="EXCHANGE" Type="varchar" MaxLength="45" />
+          <Property Name="MARKET" Type="varchar" MaxLength="45" />
+          <Property Name="ACCOUNTID" Type="varchar" MaxLength="45" />
+          <Property Name="ASSIGNMENTACTIVE" Type="varchar" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tworkers">
+          <Key>
+            <PropertyRef Name="WorkerID" />
+          </Key>
+          <Property Name="WorkerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WorkerName" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="WorkerHost" Type="varchar" MaxLength="45" />
+          <Property Name="WorkerLogLevel" Type="varchar" MaxLength="45" />
+          <Property Name="WorkerActive" Type="varchar" MaxLength="3" />
+          <Property Name="WorkerLiveDate" Type="datetime" Precision="0" />
+          <Property Name="WorkerLastCheckIn" Type="datetime" Precision="0" />
+          <Property Name="WorkerExchange" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityContainer Name="serialtraderModelStoreContainer">
+          <EntitySet Name="taccount" EntityType="Self.taccount" Schema="serialtrader" store:Type="Tables" />
+          <EntitySet Name="texchanges" EntityType="Self.texchanges" Schema="serialtrader" store:Type="Tables" />
+          <EntitySet Name="tkeys" EntityType="Self.tkeys" Schema="serialtrader" store:Type="Tables" />
+          <EntitySet Name="tmarkets" EntityType="Self.tmarkets" Schema="serialtrader" store:Type="Tables" />
+          <EntitySet Name="tmarketticks" EntityType="Self.tmarketticks" Schema="serialtrader" store:Type="Tables" />
+          <EntitySet Name="tmastertrades" EntityType="Self.tmastertrades" Schema="serialtrader" store:Type="Tables" />
+          <EntitySet Name="ttrade" EntityType="Self.ttrade" Schema="serialtrader" store:Type="Tables" />
+          <EntitySet Name="ttradestosync" EntityType="Self.ttradestosync" Schema="serialtrader" store:Type="Tables" />
+          <EntitySet Name="tworkerassignments" EntityType="Self.tworkerassignments" Schema="serialtrader" store:Type="Tables" />
+          <EntitySet Name="tworkers" EntityType="Self.tworkers" Schema="serialtrader" store:Type="Tables" />
+          <EntitySet Name="tprices" EntityType="Self.tprices" store:Type="Tables" store:Schema="serialtrader">
+            <DefiningQuery>SELECT
+`tprices`.`PriceID`, 
+`tprices`.`Exchange`, 
+`tprices`.`Market`, 
+`tprices`.`LastPrice`, 
+`tprices`.`Bid`, 
+`tprices`.`Buy`, 
+`tprices`.`Volume`, 
+`tprices`.`TimeStamp`
+FROM `tprices` AS `tprices`</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="serialtraderModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="taccount">
+          <Key>
+            <PropertyRef Name="ACCOUNTID" />
+          </Key>
+          <Property Name="ACCOUNTID" Type="Int64" Nullable="false" />
+          <Property Name="FIRSTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LASTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EMAILADDRESS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ISENABLED" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="POSTTOSLACK" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="SLACKBOTCHANNEL" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="texchanx">
+          <Key>
+            <PropertyRef Name="EXCHANGEID" />
+          </Key>
+          <Property Name="EXCHANGEID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EXCHANGE" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TRADINGENABLED" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MARKETPAIRSENABLED" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tkey">
+          <Key>
+            <PropertyRef Name="KEYID" />
+          </Key>
+          <Property Name="KEYID" Type="Int64" Nullable="false" />
+          <Property Name="ACCOUNTID" Type="Int64" Nullable="false" />
+          <Property Name="EXCHANGE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="APIKEY" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="APISECRET" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PASSPHRASE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tmarket">
+          <Key>
+            <PropertyRef Name="MarketID" />
+          </Key>
+          <Property Name="MarketID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EXCHANGE" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EXCHANGEMARKET" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="STMARKET" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="BASECURRENCY" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="MARKETCURRENCY" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tmarkettick">
+          <Key>
+            <PropertyRef Name="tTickID" />
+          </Key>
+          <Property Name="tTickID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Exchange" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Market" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BaseVolume" Type="Decimal" Nullable="false" />
+          <Property Name="TickClose" Type="Decimal" Nullable="false" />
+          <Property Name="TickHigh" Type="Decimal" Nullable="false" />
+          <Property Name="TickLow" Type="Decimal" Nullable="false" />
+          <Property Name="TickOpen" Type="Decimal" Nullable="false" />
+          <Property Name="TimeStamp" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Volume" Type="Decimal" Nullable="false" />
+          <Property Name="TickType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tmastertrade">
+          <Key>
+            <PropertyRef Name="MASTERID" />
+          </Key>
+          <Property Name="MASTERID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ACCOUNTID" Type="Int64" Nullable="false" />
+          <Property Name="EXCHANGE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TRADETYPE" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TRADINGPAIR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BUYPRICE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BUYQUANTITY" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BUYTOTAL" Type="Decimal" />
+          <Property Name="SELLPRICE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SELLQUANTITY" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FIRSTACTION" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LASTRUN" Type="DateTime" />
+          <Property Name="NEXTRUN" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RUNFREQUENCY" Type="Int64" Nullable="false" />
+          <Property Name="RUNLIMIT" Type="Int64" Nullable="false" />
+          <Property Name="RUNCOUNT" Type="Int64" Nullable="false" />
+          <Property Name="ACTIVE" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SELLTOTAL" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ttrade">
+          <Key>
+            <PropertyRef Name="TID" />
+          </Key>
+          <Property Name="TID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ACCOUNTID" Type="Int64" Nullable="false" />
+          <Property Name="EXCHANGE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MASTERID" Type="Int64" />
+          <Property Name="TRADEGROUPID" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="TRADINGACTION" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TRADINGPAIR" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TRADINGPRICE" Type="Decimal" Nullable="false" />
+          <Property Name="ACTUALRATE" Type="Decimal" />
+          <Property Name="TRADINGQTY" Type="Decimal" />
+          <Property Name="TOTAL" Type="Decimal" />
+          <Property Name="ORDERID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ORDERSTATUS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DATETIME" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ORDERRESULT" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="RETRYIFCANCELED" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="USEEXCHANGEPRICE" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ERRORRESULT" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ttradestosync">
+          <Key>
+            <PropertyRef Name="SYNCID" />
+          </Key>
+          <Property Name="SYNCID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ACCOUNTID" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MARKET" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LASTSYNC" Type="DateTime" />
+          <Property Name="ENABLED" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EXCHANGE" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tworkerassignment">
+          <Key>
+            <PropertyRef Name="ASSIGNMENTID" />
+          </Key>
+          <Property Name="ASSIGNMENTID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WORKERID" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EXCHANGE" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="MARKET" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ACCOUNTID" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ASSIGNMENTACTIVE" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tworker">
+          <Key>
+            <PropertyRef Name="WorkerID" />
+          </Key>
+          <Property Name="WorkerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkerName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WorkerHost" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="WorkerLogLevel" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="WorkerActive" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="WorkerLiveDate" Type="DateTime" />
+          <Property Name="WorkerLastCheckIn" Type="DateTime" />
+          <Property Name="WorkerExchange" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tprice">
+          <Key>
+            <PropertyRef Name="PriceID" />
+          </Key>
+          <Property Name="PriceID" Type="Int64" Nullable="false" />
+          <Property Name="Exchange" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Market" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastPrice" Type="Decimal" />
+          <Property Name="Bid" Type="Decimal" />
+          <Property Name="Buy" Type="Decimal" />
+          <Property Name="Volume" Type="Decimal" />
+          <Property Name="TimeStamp" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityContainer Name="serialtraderEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="taccounts" EntityType="Self.taccount" />
+          <EntitySet Name="texchanges" EntityType="Self.texchanx" />
+          <EntitySet Name="tkeys" EntityType="Self.tkey" />
+          <EntitySet Name="tmarkets" EntityType="Self.tmarket" />
+          <EntitySet Name="tmarketticks" EntityType="Self.tmarkettick" />
+          <EntitySet Name="tmastertrades" EntityType="Self.tmastertrade" />
+          <EntitySet Name="ttrades" EntityType="Self.ttrade" />
+          <EntitySet Name="ttradestosyncs" EntityType="Self.ttradestosync" />
+          <EntitySet Name="tworkerassignments" EntityType="Self.tworkerassignment" />
+          <EntitySet Name="tworkers" EntityType="Self.tworker" />
+          <EntitySet Name="tprices" EntityType="Self.tprice" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="serialtraderModelStoreContainer" CdmEntityContainer="serialtraderEntities">
+          <EntitySetMapping Name="taccounts">
+            <EntityTypeMapping TypeName="serialtraderModel.taccount">
+              <MappingFragment StoreEntitySet="taccount">
+                <ScalarProperty Name="ACCOUNTID" ColumnName="ACCOUNTID" />
+                <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
+                <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
+                <ScalarProperty Name="EMAILADDRESS" ColumnName="EMAILADDRESS" />
+                <ScalarProperty Name="ISENABLED" ColumnName="ISENABLED" />
+                <ScalarProperty Name="POSTTOSLACK" ColumnName="POSTTOSLACK" />
+                <ScalarProperty Name="SLACKBOTCHANNEL" ColumnName="SLACKBOTCHANNEL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="texchanges">
+            <EntityTypeMapping TypeName="serialtraderModel.texchanx">
+              <MappingFragment StoreEntitySet="texchanges">
+                <ScalarProperty Name="EXCHANGEID" ColumnName="EXCHANGEID" />
+                <ScalarProperty Name="EXCHANGE" ColumnName="EXCHANGE" />
+                <ScalarProperty Name="TRADINGENABLED" ColumnName="TRADINGENABLED" />
+                <ScalarProperty Name="MARKETPAIRSENABLED" ColumnName="MARKETPAIRSENABLED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tkeys">
+            <EntityTypeMapping TypeName="serialtraderModel.tkey">
+              <MappingFragment StoreEntitySet="tkeys">
+                <ScalarProperty Name="KEYID" ColumnName="KEYID" />
+                <ScalarProperty Name="ACCOUNTID" ColumnName="ACCOUNTID" />
+                <ScalarProperty Name="EXCHANGE" ColumnName="EXCHANGE" />
+                <ScalarProperty Name="APIKEY" ColumnName="APIKEY" />
+                <ScalarProperty Name="APISECRET" ColumnName="APISECRET" />
+                <ScalarProperty Name="PASSPHRASE" ColumnName="PASSPHRASE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmarkets">
+            <EntityTypeMapping TypeName="serialtraderModel.tmarket">
+              <MappingFragment StoreEntitySet="tmarkets">
+                <ScalarProperty Name="MarketID" ColumnName="MarketID" />
+                <ScalarProperty Name="EXCHANGE" ColumnName="EXCHANGE" />
+                <ScalarProperty Name="EXCHANGEMARKET" ColumnName="EXCHANGEMARKET" />
+                <ScalarProperty Name="STMARKET" ColumnName="STMARKET" />
+                <ScalarProperty Name="BASECURRENCY" ColumnName="BASECURRENCY" />
+                <ScalarProperty Name="MARKETCURRENCY" ColumnName="MARKETCURRENCY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmarketticks">
+            <EntityTypeMapping TypeName="serialtraderModel.tmarkettick">
+              <MappingFragment StoreEntitySet="tmarketticks">
+                <ScalarProperty Name="tTickID" ColumnName="tTickID" />
+                <ScalarProperty Name="Exchange" ColumnName="Exchange" />
+                <ScalarProperty Name="Market" ColumnName="Market" />
+                <ScalarProperty Name="BaseVolume" ColumnName="BaseVolume" />
+                <ScalarProperty Name="TickClose" ColumnName="TickClose" />
+                <ScalarProperty Name="TickHigh" ColumnName="TickHigh" />
+                <ScalarProperty Name="TickLow" ColumnName="TickLow" />
+                <ScalarProperty Name="TickOpen" ColumnName="TickOpen" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="TickType" ColumnName="TickType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmastertrades">
+            <EntityTypeMapping TypeName="serialtraderModel.tmastertrade">
+              <MappingFragment StoreEntitySet="tmastertrades">
+                <ScalarProperty Name="MASTERID" ColumnName="MASTERID" />
+                <ScalarProperty Name="ACCOUNTID" ColumnName="ACCOUNTID" />
+                <ScalarProperty Name="EXCHANGE" ColumnName="EXCHANGE" />
+                <ScalarProperty Name="TRADETYPE" ColumnName="TRADETYPE" />
+                <ScalarProperty Name="TRADINGPAIR" ColumnName="TRADINGPAIR" />
+                <ScalarProperty Name="BUYPRICE" ColumnName="BUYPRICE" />
+                <ScalarProperty Name="BUYQUANTITY" ColumnName="BUYQUANTITY" />
+                <ScalarProperty Name="BUYTOTAL" ColumnName="BUYTOTAL" />
+                <ScalarProperty Name="SELLPRICE" ColumnName="SELLPRICE" />
+                <ScalarProperty Name="SELLQUANTITY" ColumnName="SELLQUANTITY" />
+                <ScalarProperty Name="FIRSTACTION" ColumnName="FIRSTACTION" />
+                <ScalarProperty Name="LASTRUN" ColumnName="LASTRUN" />
+                <ScalarProperty Name="NEXTRUN" ColumnName="NEXTRUN" />
+                <ScalarProperty Name="RUNFREQUENCY" ColumnName="RUNFREQUENCY" />
+                <ScalarProperty Name="RUNLIMIT" ColumnName="RUNLIMIT" />
+                <ScalarProperty Name="RUNCOUNT" ColumnName="RUNCOUNT" />
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="SELLTOTAL" ColumnName="SELLTOTAL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ttrades">
+            <EntityTypeMapping TypeName="serialtraderModel.ttrade">
+              <MappingFragment StoreEntitySet="ttrade">
+                <ScalarProperty Name="TID" ColumnName="TID" />
+                <ScalarProperty Name="ACCOUNTID" ColumnName="ACCOUNTID" />
+                <ScalarProperty Name="EXCHANGE" ColumnName="EXCHANGE" />
+                <ScalarProperty Name="MASTERID" ColumnName="MASTERID" />
+                <ScalarProperty Name="TRADEGROUPID" ColumnName="TRADEGROUPID" />
+                <ScalarProperty Name="TRADINGACTION" ColumnName="TRADINGACTION" />
+                <ScalarProperty Name="TRADINGPAIR" ColumnName="TRADINGPAIR" />
+                <ScalarProperty Name="TRADINGPRICE" ColumnName="TRADINGPRICE" />
+                <ScalarProperty Name="ACTUALRATE" ColumnName="ACTUALRATE" />
+                <ScalarProperty Name="TRADINGQTY" ColumnName="TRADINGQTY" />
+                <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+                <ScalarProperty Name="ORDERID" ColumnName="ORDERID" />
+                <ScalarProperty Name="ORDERSTATUS" ColumnName="ORDERSTATUS" />
+                <ScalarProperty Name="DATETIME" ColumnName="DATETIME" />
+                <ScalarProperty Name="ORDERRESULT" ColumnName="ORDERRESULT" />
+                <ScalarProperty Name="RETRYIFCANCELED" ColumnName="RETRYIFCANCELED" />
+                <ScalarProperty Name="USEEXCHANGEPRICE" ColumnName="USEEXCHANGEPRICE" />
+                <ScalarProperty Name="ERRORRESULT" ColumnName="ERRORRESULT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ttradestosyncs">
+            <EntityTypeMapping TypeName="serialtraderModel.ttradestosync">
+              <MappingFragment StoreEntitySet="ttradestosync">
+                <ScalarProperty Name="SYNCID" ColumnName="SYNCID" />
+                <ScalarProperty Name="ACCOUNTID" ColumnName="ACCOUNTID" />
+                <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+                <ScalarProperty Name="LASTSYNC" ColumnName="LASTSYNC" />
+                <ScalarProperty Name="ENABLED" ColumnName="ENABLED" />
+                <ScalarProperty Name="EXCHANGE" ColumnName="EXCHANGE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tworkerassignments">
+            <EntityTypeMapping TypeName="serialtraderModel.tworkerassignment">
+              <MappingFragment StoreEntitySet="tworkerassignments">
+                <ScalarProperty Name="ASSIGNMENTID" ColumnName="ASSIGNMENTID" />
+                <ScalarProperty Name="WORKERID" ColumnName="WORKERID" />
+                <ScalarProperty Name="EXCHANGE" ColumnName="EXCHANGE" />
+                <ScalarProperty Name="MARKET" ColumnName="MARKET" />
+                <ScalarProperty Name="ACCOUNTID" ColumnName="ACCOUNTID" />
+                <ScalarProperty Name="ASSIGNMENTACTIVE" ColumnName="ASSIGNMENTACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tworkers">
+            <EntityTypeMapping TypeName="serialtraderModel.tworker">
+              <MappingFragment StoreEntitySet="tworkers">
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="WorkerName" ColumnName="WorkerName" />
+                <ScalarProperty Name="WorkerHost" ColumnName="WorkerHost" />
+                <ScalarProperty Name="WorkerLogLevel" ColumnName="WorkerLogLevel" />
+                <ScalarProperty Name="WorkerActive" ColumnName="WorkerActive" />
+                <ScalarProperty Name="WorkerLiveDate" ColumnName="WorkerLiveDate" />
+                <ScalarProperty Name="WorkerLastCheckIn" ColumnName="WorkerLastCheckIn" />
+                <ScalarProperty Name="WorkerExchange" ColumnName="WorkerExchange" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tprices">
+            <EntityTypeMapping TypeName="serialtraderModel.tprice">
+              <MappingFragment StoreEntitySet="tprices">
+                <ScalarProperty Name="PriceID" ColumnName="PriceID" />
+                <ScalarProperty Name="Exchange" ColumnName="Exchange" />
+                <ScalarProperty Name="Market" ColumnName="Market" />
+                <ScalarProperty Name="LastPrice" ColumnName="LastPrice" />
+                <ScalarProperty Name="Bid" ColumnName="Bid" />
+                <ScalarProperty Name="Buy" ColumnName="Buy" />
+                <ScalarProperty Name="Volume" ColumnName="Volume" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

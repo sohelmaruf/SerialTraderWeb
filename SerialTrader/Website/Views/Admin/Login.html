@@ -1,0 +1,60 @@
+﻿
+
+<div id="register" style="width:100%;" ng-controller="loginController" ng-init="initializeController()" ng-cloak>
+    <br />
+    <div class="container">
+        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+            <tr>
+                <td style="vertical-align:top">
+                    <h2 class="page-title">Login</h2>
+                </td>
+                <td style="vertical-align:top; width:40%">
+                    <section class="services">
+                        <div class="media" style="padding-left:50px">
+                            <div class="media-left media-middle">
+                                <i class="fa fa-cogs"></i>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">New to WaterCons?</h4>
+                                <p>Here are some tips on Program Management and data import.Here are some tips on Program Management and data import. Here are some tips on Program Management and data import.  </p>
+                            </div>
+                        </div>
+
+                        <div class="media" style="padding-left:50px">
+                            <div class="media-left media-middle">
+                                <i class="fa fa-user-md"></i>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">Mobile</h4>
+                                <p>Are you out of the office more than you are in the office? Check out our free iOS and Android apps.</p>
+                            </div>
+                        </div>
+                    </section>
+                </td>
+                <td style="vertical-align:top;">
+                    <div class="col-sm-6 col-md-4 col-md-offset-4" style="width:400px">
+                        <!--<h1 class="text-center login-title">Login to WaterCons</h1>-->
+                        <div class="account-wall">
+                            <img class="profile-img" src="../../img/images.png" alt="WaterCons">
+                            <form class="form-signin">
+                                <input ng-model="UserName" type="text" class="form-control" ng-class="{'validation-error': UserNameInputError}" placeholder="User Name" required autofocus>
+                                <input ng-model="Password" type="password" class="form-control" ng-class="{'validation-error': PasswordInputError}" placeholder="Password" required>
+                                <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="login()">
+                                    Sign in
+                                </button>
+                                <label class="checkbox pull-left">
+                                    <input type="checkbox" value="remember-me">
+                                    Remember me
+                                </label>
+                                <a href="#Admin/PasswordRecovery" style="color:blue" class="pull-right need-help">Forgot Password? </a><span class="clearfix"></span>
+                                <div style="padding-top:0px; padding-bottom:0px">
+                                    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)"><div ng-bind-html="MessageBox"></div></alert>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

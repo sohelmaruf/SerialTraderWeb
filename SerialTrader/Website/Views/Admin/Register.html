@@ -1,0 +1,199 @@
+﻿
+<div id="register" style="width:100%;" ng-controller="registerController" ng-init="initializeController()">
+
+    <div class="container">
+        <br />
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tr>
+                <td style="vertical-align:top;">
+                    <h2 class="page-title">Register</h2>
+                </td>
+                <td>
+                    <div  style="width:700px;">
+                        <form class="form-horizontal" style="background-color: #f7f7f7; -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+                                    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+                                    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3); padding-top:30px; padding-right:80px;" role="form">
+                            
+                            <div class="form-group">
+                                <label for="ContactPerson" class="col-sm-3 control-label">Subscription</label>
+                                <div class="col-sm-9">
+                                    <select ng-model="SubscriptionType" id="selectbasic" name="selectbasic" class="form-control input-md">
+                                        <option selected="selected">BASIC</option>
+                                        <option>STANDARD</option>
+                                        <option>ENTERPRISE</option>
+                                    </select>
+                                    <a href="#Main/Pricing" style="color:blue" class="pull-right need-help">Product Pricing </a>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Title" class="col-sm-3 control-label">*Organization</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="Title" type="text" id="Title" placeholder="Organization Name" class="form-control" ng-class="{'validation-error': TitleInputError}" autofocus>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ContactPerson" class="col-sm-3 control-label">* Contact</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="ContactPerson" type="text" id="ContactPerson" placeholder="Contact Person Name" class="form-control" ng-class="{'validation-error': ContactPersonInputError}">
+                                    <span class="help-block">Last Name, First Name, eg.: Smith, Harry</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="ContactNumber" class="col-sm-3 control-label">Phone</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="ContactNumber" type="text" id="ContactNumber" placeholder="Phone Number" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" class="col-sm-3 control-label">* Email</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="Email" type="email" id="email" placeholder="Email" class="form-control" ng-class="{'validation-error': EmailAddressInputError}">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="Address" class="col-sm-3 control-label">Address</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="Address" type="text" id="Address" placeholder="Address" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="UserName" class="col-sm-3 control-label">* User Name</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="UserName" type="text" id="UserName" placeholder="User Name" class="form-control" ng-class="{'validation-error': UserNameInputError}" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="col-sm-3 control-label">* Password</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="Password" type="password" id="password" placeholder="Password" class="form-control" ng-class="{'validation-error': PasswordInputError}" >
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="PasswordConfirmation" class="col-sm-3 control-label"></label>
+                                <div class="col-sm-9">
+                                    <input ng-model="PasswordConfirmation" type="Password" id="PasswordConfirmation" placeholder="Re-type Password" class="form-control" ng-class="{'validation-error': PasswordConfirmationInputError}">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="g-recaptcha" data-sitekey="6LcZWCoUAAAAADaxW53LPjvwCevc6Lromls5uskg"></div>
+                            </div>
+                            <!-- /.form-group -->
+                            <div class="form-group">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input ng-model="TermsAccepted" type="checkbox">I accept <a href="#Main/Terms" style="color:blue">terms</a>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div> <!-- /.form-group -->
+                            <div class="form-group">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <button type="submit" class="btn btn-primary btn-block" ng-click="createClient()">Register</button>
+                                </div>
+                            </div>
+                        </form> <!-- /form -->
+                    </div> <!-- ./container -->
+
+                    <div style="padding-top:20px">
+                        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)"><div ng-bind-html="MessageBox"></div></alert>
+                    </div>
+                </td>
+                <td style="vertical-align:top">
+                    <section class="services">
+                        <div class="media" style="padding-left:50px">
+                            <div class="media-left media-middle">
+                                <i class="fa fa-cogs"></i>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">New to WaterCons?</h4>
+                                <p>Here are some tips on Program Management and data import. </p>
+                            </div>
+                        </div>
+
+                        <div class="media" style="padding-left:50px">
+                            <div class="media-left media-middle">
+                                <i class="fa fa-user-md"></i>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">Mobile</h4>
+                                <p>Are you out of the office more than you are in the office? Check out our free iOS and Android apps.</p>
+                            </div>
+                        </div>
+                        <div class="media" style="padding-left:50px">
+                            <div class="media-left media-middle">
+                                <i class="fa fa-user-md"></i>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">Mobile</h4>
+                                <p>Are you out of the office more than you are in the office? Check out our free iOS and Android apps.</p>
+                            </div>
+                        </div>
+                    </section>
+                </td>
+            </tr>
+        </table>
+        
+        </div>
+
+
+
+
+
+
+
+
+
+
+    <!--<h3> Register </h3>
+
+    <table class="table" style="width:100%">
+        <tr>
+            <td class="input-label" align="right"><label class="required">First Name:</label></td>
+            <td class="input-box">
+                <input ng-model="FirstName" type="text" style="width: 300px" ng-class="{'validation-error': FirstNameInputError}" />
+            </td>
+        </tr>
+        <tr>
+            <td class="input-label" align="right"><label class="required">Last Name:</label></td>
+            <td class="input-box">
+                <input ng-model="LastName" type="text" style="width: 300px" ng-class="{'validation-error': LastNameInputError}" />
+            </td>
+        </tr>
+        <tr>
+            <td class="input-label" align="right"><label class="required">User Name:</label></td>
+            <td class="input-box">
+                <input ng-model="UserName" type="text" style="width: 300px" ng-class="{'validation-error': UserNameInputError}" />
+            </td>
+        </tr>
+        <tr>
+            <td class="input-label" align="right"><label class="required">Email Address:</label></td>
+            <td class="input-box">
+                <input ng-model="EmailAddress" type="text" style="width: 300px" ng-class="{'validation-error': EmailAddressInputError}" />
+            </td>
+        </tr>
+        <tr>
+            <td class="input-label" align="right"><label class="required">Password:</label></td>
+            <td class="input-box">
+                <input ng-model="Password" type="password" style="width: 300px" ng-class="{'validation-error': PasswordInputError}" />
+            </td>
+        </tr>
+        <tr>
+            <td class="input-label-bottom" align="right"><label class="required">Password Confirmation:</label></td>
+            <td class="input-box-bottom">
+                <input ng-model="PasswordConfirmation" type="password" style="width: 300px" ng-class="{'validation-error': PasswordConfirmationInputError}" />
+            </td>
+        </tr>
+    </table>
+
+    <button class="btn btn-primary btn-large" ng-click="registerUser()">Register</button>
+        -->
+
+
+</div>
