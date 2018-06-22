@@ -69,10 +69,6 @@
     <Compile Include="Business\AdminBusinessRules.cs" />
     <Compile Include="Business\AdminBusinessService.cs" />
     <Compile Include="Business\ApplicationInitializationBusinessService.cs" />
-    <Compile Include="Business\ClientBusinessRules.cs" />
-    <Compile Include="Business\ClientBusinessService.cs" />
-    <Compile Include="Business\ContactBusinessRules.cs" />
-    <Compile Include="Business\ContactBusinessService.cs" />
     <Compile Include="Business\UserBusinessRules.cs" />
     <Compile Include="Business\UserBusinessService.cs" />
     <Compile Include="Common\Constants.cs" />
@@ -85,10 +81,7 @@
     <Compile Include="DataService\ActivityLogDataService.cs" />
     <Compile Include="DataService\AdminDataService.cs" />
     <Compile Include="DataService\ApplicationDataService.cs" />
-    <Compile Include="DataService\ClientDataService.cs" />
-    <Compile Include="DataService\ContactDataService.cs" />
     <Compile Include="DataService\EntityFrameworkDataService.cs" />
-    <Compile Include="DataService\PackageDataService.cs" />
     <Compile Include="DataService\UserDataService.cs" />
     <Compile Include="Entity\AdminInfo.cs" />
     <Compile Include="Entity\ApplicationInfo.cs" />
@@ -99,11 +92,14 @@
     <Compile Include="Interfaces\IActivityLogDataService.cs" />
     <Compile Include="Interfaces\IAdminDataService.cs" />
     <Compile Include="Interfaces\IApplicationDataService.cs" />
-    <Compile Include="Interfaces\IClientDataService.cs" />
-    <Compile Include="Interfaces\IContactDataService.cs" />
     <Compile Include="Interfaces\Interfaces.cs" />
-    <Compile Include="Interfaces\IPackageDataService.cs" />
     <Compile Include="Interfaces\IUserDataService.cs" />
+    <Compile Include="Model\activitylog.cs">
+      <DependentUpon>SerialTraderModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\applicationmenu.cs">
+      <DependentUpon>SerialTraderModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\SerialTraderModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

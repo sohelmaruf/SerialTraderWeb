@@ -12,13 +12,13 @@ namespace AppLibrary.Entity
     public class RegisterInfo : TransactionalInformation
     {
         public const string CONTACT_USER_ADD = "Contact user added successfully.";
-        //public List<applicationmenu> MenuItems;
-        //public user User;
+        public List<applicationmenu> MenuItems;
+        public taccount User;
 
         public RegisterInfo()
         {
-            //User = new user();
-            //MenuItems = new List<applicationmenu>();
+            User = new taccount();
+            MenuItems = new List<applicationmenu>();
         }
 
         public Nullable<int> UserID { get; set; }

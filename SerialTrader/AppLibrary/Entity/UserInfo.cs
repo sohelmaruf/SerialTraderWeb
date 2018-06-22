@@ -12,13 +12,13 @@ namespace AppLibrary.Entity
     public class UserInfo : TransactionalInformation
     {
         public static string LOGIN_SUCCESSFUL = "Login successful.";
-        //public List<applicationmenu> MenuItems;
-        //public user User;
+        public List<applicationmenu> MenuItems;
+        public taccount User;
 
         public UserInfo()
         {
-            //User = new user();
-            //MenuItems = new List<applicationmenu>();
+            User = new taccount();
+            MenuItems = new List<applicationmenu>();
         }
 
         public string FirstName { get; set; }

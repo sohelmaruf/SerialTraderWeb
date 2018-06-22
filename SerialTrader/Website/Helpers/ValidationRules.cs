@@ -6,7 +6,7 @@ using System.Text;
 
 using AppLibrary.Model;
 
-namespace WaterCons.Helpers
+namespace Website.Helpers
 {
     /// <summary>
     /// Validation Rules

@@ -11,11 +11,13 @@ namespace AppLibrary.Entity
 {
     public class ApplicationInfo: TransactionalInformation
     {
-        //public List<applicationmenu> MenuItems;
+        public List<applicationmenu> MenuItems;
+        public taccount account;
 
         public ApplicationInfo()
         {
-            //MenuItems = new List<applicationmenu>();
+            account = new taccount();
+            MenuItems = new List<applicationmenu>();
         }
     }
 }

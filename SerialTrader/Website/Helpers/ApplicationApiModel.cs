@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 
 using System.ComponentModel.DataAnnotations;
-using WaterCons.Models;
+using AppLibrary.Model;
 
-namespace WaterCons.Helpers
+namespace Website.Helpers
 {
    
 

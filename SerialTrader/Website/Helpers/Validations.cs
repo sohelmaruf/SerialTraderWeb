@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 
 
-namespace WaterCons.Helpers
+namespace Website.Helpers
 {
   
     public class Validations

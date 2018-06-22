@@ -15,12 +15,12 @@ namespace AppLibrary.DataServices
     public class EntityFrameworkDataService : IDataService, IDisposable
     {
 
-    //private waterconsEntities db = new waterconsEntities();
+        private serialtraderEntities db = new serialtraderEntities();
 
 
-      waterconsEntities _connection = new waterconsEntities();
+        serialtraderEntities _connection = new serialtraderEntities();
 
-        public waterconsEntities dbConnection
+        public serialtraderEntities dbConnection
         {
             get { return _connection; }
         }

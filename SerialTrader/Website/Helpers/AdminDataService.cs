@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using WaterCons.Helpers;
-using WaterCons.Models;
+//using Website.Helpers;
+using AppLibrary.Model;
 
-namespace WaterCons.Helpers
+namespace Website.Helpers
 {
     
     public class AdminDataService : EntityFrameworkDataService, IAdminDataService
@@ -21,16 +21,16 @@ namespace WaterCons.Helpers
         /// <param name="emailAddress"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public void RegisterUser(user user)
+        public void RegisterUser(taccount user)
         {
             DateTime now = DateTime.Now;
         
             //user.ID = Guid.NewGuid();          
-            user.DateCreated = now;
-            user.DateLastLogin = now;
-            user.DateUpdated = now;
+            //user.DateCreated = now;
+            //user.DateLastLogin = now;
+            //user.DateUpdated = now;
 
-            dbConnection.users.Add(user);       
+            //dbConnection.users.Add(user);       
             
         }
 
@@ -38,10 +38,10 @@ namespace WaterCons.Helpers
         /// Update User
         /// </summary>
         /// <param name="user"></param>
-        public void UpdateUser(user user)
+        public void UpdateUser(taccount user)
         {
             DateTime now = DateTime.Now;           
-            user.DateUpdated = now;          
+            //user.DateUpdated = now;          
 
         }
 
@@ -50,9 +50,9 @@ namespace WaterCons.Helpers
         /// </summary>
         /// <param name="userName"></param>
         /// <returns></returns>
-        public user GetUserByUserName(string userName)
+        public taccount GetUserByUserName(string userName)
         {
-            user user = dbConnection.users.SingleOrDefault(u => u.UserName == userName);
+            taccount user = dbConnection.taccounts.SingleOrDefault(u => u.EMAILADDRESS == userName);
             return user;
         }
 
@@ -62,9 +62,9 @@ namespace WaterCons.Helpers
         /// </summary>
         /// <param name="userID"></param>
         /// <returns></returns>
-        public user GetUser(int userID)
+        public taccount GetUser(int userID)
         {
-            user user = dbConnection.users.SingleOrDefault(u => u.ID == userID);
+            taccount user = dbConnection.taccounts.SingleOrDefault(u => u.ACCOUNTID == userID);
             return user;
         }
 
@@ -75,15 +75,15 @@ namespace WaterCons.Helpers
         /// <param name="userName"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public user Login(string userName, string password)
+        public taccount Login(string userName, string password)
         {
-            user user = dbConnection.users.SingleOrDefault(u => u.UserName == userName && u.Password == password);
+            taccount user = dbConnection.taccounts.SingleOrDefault(u => u.EMAILADDRESS == userName && u.EMAILADDRESS == password);
             return user;
         }
 
-        public void UpdateLastLogin(user user)
+        public void UpdateLastLogin(taccount user)
         {
-            user.DateLastLogin = DateTime.Now;
+            //taccount.DateLastLogin = DateTime.Now;
         }
 
     }

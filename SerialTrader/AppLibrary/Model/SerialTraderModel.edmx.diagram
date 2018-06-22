@@ -16,6 +16,8 @@
         <EntityTypeShape EntityType="serialtraderModel.tworkerassignment" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="serialtraderModel.tworker" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="serialtraderModel.tprice" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="serialtraderModel.applicationmenu" Width="1.5" PointX="5.375" PointY="9.75" />
+        <EntityTypeShape EntityType="serialtraderModel.activitylog" Width="1.5" PointX="7.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

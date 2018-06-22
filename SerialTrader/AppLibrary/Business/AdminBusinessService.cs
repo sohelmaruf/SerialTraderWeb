@@ -39,22 +39,22 @@ namespace AppLibrary.Business
         /// <param name="passwordConfirmation"></param>
         /// <param name="transaction"></param>
         /// <returns></returns>
-        public user RegisterUser(string firstName, string lastName, string userName, string emailAddress, string password, string passwordConfirmation, out TransactionalInformation transaction)
+        public taccount RegisterUser(string firstName, string lastName, string userName, string emailAddress, string password, string passwordConfirmation, out TransactionalInformation transaction)
         {
             transaction = new TransactionalInformation();   
          
             AdminBusinessRules adminBusinessRules = new AdminBusinessRules();
 
-            user user = new user();
+            taccount user = new taccount();
 
             try
             {
              
-                user.FirstName = WebUtils.UppercaseFirstLetter(firstName.Trim());
-                user.LastName = WebUtils.UppercaseFirstLetter(lastName.Trim());
-                user.EmailAddress = emailAddress.Trim();
-                user.Password = password.Trim();
-                user.UserName = userName.Trim();
+                //user.FirstName = WebUtils.UppercaseFirstLetter(firstName.Trim());
+                //user.LastName = WebUtils.UppercaseFirstLetter(lastName.Trim());
+                //user.EmailAddress = emailAddress.Trim();
+                //user.Password = password.Trim();
+                //user.UserName = userName.Trim();
 
                 AdminDataService.CreateSession();
 
@@ -101,7 +101,7 @@ namespace AppLibrary.Business
         /// <param name="passwordConfirmation"></param>
         /// <param name="transaction"></param>
         /// <returns></returns>
-        public user UpdateUser(int userID, string firstName, string lastName,
+        public taccount UpdateUser(int userID, string firstName, string lastName,
             string userName, string emailAddress, string password, string passwordConfirmation, 
             out TransactionalInformation transaction)
         {
@@ -109,7 +109,7 @@ namespace AppLibrary.Business
 
             AdminBusinessRules adminBusinessRules = new AdminBusinessRules();
 
-            user user = new user();
+            taccount user = new taccount();
 
             try
             {
@@ -117,11 +117,11 @@ namespace AppLibrary.Business
                 AdminDataService.CreateSession();
 
                 user = AdminDataService.GetUser(userID);
-                user.FirstName = firstName.Trim();
-                user.LastName = lastName.Trim();
-                user.EmailAddress = emailAddress.Trim();
-                user.Password = password.Trim();
-                user.UserName = userName.Trim();
+                //user.FirstName = firstName.Trim();
+                //user.LastName = lastName.Trim();
+                //user.EmailAddress = emailAddress.Trim();
+                //user.Password = password.Trim();
+                //user.UserName = userName.Trim();
 
                 adminBusinessRules.ValidateExistingUser(user, AdminDataService);
                 adminBusinessRules.ValidatePassword(password, passwordConfirmation);
@@ -161,19 +161,19 @@ namespace AppLibrary.Business
         /// <param name="password"></param>
         /// <param name="transaction"></param>
         /// <returns></returns>
-        public user Login(string userName, string password, out TransactionalInformation transaction)
+        public taccount Login(string userName, string password, out TransactionalInformation transaction)
         {
             transaction = new TransactionalInformation();
 
             AdminBusinessRules adminBusinessRules = new AdminBusinessRules();
 
-            user user = new user();
+            taccount user = new taccount();
 
             try
             {
 
-                user.UserName = userName.Trim();
-                user.Password = password.Trim();
+                //user.UserName = userName.Trim();
+                //user.Password = password.Trim();
 
                 AdminDataService.CreateSession();
                 user = AdminDataService.Login(userName, password);
@@ -210,13 +210,13 @@ namespace AppLibrary.Business
         /// <param name="userID"></param>
         /// <param name="transaction"></param>
         /// <returns></returns>
-        public user GetUser(int userID, out TransactionalInformation transaction)
+        public taccount GetUser(int userID, out TransactionalInformation transaction)
         {
             transaction = new TransactionalInformation();
 
             AdminBusinessRules adminBusinessRules = new AdminBusinessRules();
 
-            user user = new user();
+            taccount user = new taccount();
 
             try
             {

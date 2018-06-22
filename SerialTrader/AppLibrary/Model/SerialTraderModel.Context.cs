@@ -36,5 +36,7 @@ namespace AppLibrary.Model
         public DbSet<tworkerassignment> tworkerassignments { get; set; }
         public DbSet<tworker> tworkers { get; set; }
         public DbSet<tprice> tprices { get; set; }
+        public DbSet<applicationmenu> applicationmenus { get; set; }
+        public DbSet<activitylog> activitylogs { get; set; }
     }
 }

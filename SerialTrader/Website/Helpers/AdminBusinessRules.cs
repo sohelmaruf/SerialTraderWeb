@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using WaterCons.Helpers;
-using WaterCons.Models;
+using Website.Helpers;
+using AppLibrary.Model;
 
 
-namespace WaterCons.Helpers
+namespace Website.Helpers
 {
     class AdminBusinessRules : ValidationRules
     {
@@ -19,7 +19,7 @@ namespace WaterCons.Helpers
         /// </summary>
         /// <param name="user"></param>
         /// <param name="dataService"></param>
-        public void InitializeAccountsBusinessRules(user user, IAdminDataService dataService)
+        public void InitializeAccountsBusinessRules(taccount user, IAdminDataService dataService)
         {
             accountsDataService = dataService;
             InitializeValidationRules(user);
@@ -30,7 +30,7 @@ namespace WaterCons.Helpers
         /// </summary>
         /// <param name="user"></param>
         /// <param name="dataService"></param>
-        public void ValidateUser(user user, IAdminDataService dataService)
+        public void ValidateUser(taccount user, IAdminDataService dataService)
         {
             accountsDataService = dataService;
 
@@ -43,12 +43,12 @@ namespace WaterCons.Helpers
             ValidateRequired("EmailAddress", "Email Address");
             ValidateEmailAddress("EmailAddress", "Email Address");              
 
-            ValidateUniqueUserName(user.UserName);
+            ValidateUniqueUserName(user.EMAILADDRESS);
 
     
         }
 
-        public void ValidateExistingUser(user user, IAdminDataService dataService)
+        public void ValidateExistingUser(taccount user, IAdminDataService dataService)
         {
             accountsDataService = dataService;
 
@@ -61,7 +61,7 @@ namespace WaterCons.Helpers
             ValidateRequired("EmailAddress", "Email Address");
             ValidateEmailAddress("EmailAddress", "Email Address");
 
-            ValidateUniqueUserNameForExistingUser(user.ID, user.UserName);
+            //ValidateUniqueUserNameForExistingUser(user.ACCOUNTID, user.EMAILADDRESS);
 
         }
 
@@ -73,7 +73,7 @@ namespace WaterCons.Helpers
         public void ValidateUniqueUserName(string userName)
         {
 
-            user user = accountsDataService.GetUserByUserName(userName);
+            taccount user = accountsDataService.GetUserByUserName(userName);
             if (user != null)
             {
                 AddValidationError("UserName", "User Name " + userName + " already exists.");
@@ -88,10 +88,10 @@ namespace WaterCons.Helpers
         /// <param name="userName"></param>
         public void ValidateUniqueUserNameForExistingUser(int userID, string userName)
         {
-            user user = accountsDataService.GetUserByUserName(userName);
+            taccount user = accountsDataService.GetUserByUserName(userName);
             if (user != null)
             {
-              if (user.ID != userID)
+              if (user.ACCOUNTID != userID)
               {
                 AddValidationError("UserName", "User Name " + userName + " already exists.");
               }

@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-using WaterCons.Models;
+using AppLibrary.Model;
 
-namespace WaterCons.Helpers
+namespace Website.Helpers
 {
     public class AdminApiModel : TransactionalInformation
     {
         public List<applicationmenu> MenuItems;
-        public user User;
+        public taccount User;
 
         public AdminApiModel()
         {
-            User = new user();
+            User = new taccount();
             MenuItems = new List<applicationmenu>();        
         }
 

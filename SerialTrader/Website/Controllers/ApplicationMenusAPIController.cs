@@ -8,13 +8,14 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using WaterCons.Library.Models;
 
-namespace WaterCons.Controllers
+using AppLibrary.Model;
+
+namespace Website.Controllers
 {
     public class ApplicationMenusAPIController : ApiController
     {
-        private waterconsEntities db = new waterconsEntities();
+        private serialtraderEntities db = new serialtraderEntities();
 
         // GET: api/ApplicationmenusAPI
         public IQueryable<applicationmenu> Getapplicationmenus()

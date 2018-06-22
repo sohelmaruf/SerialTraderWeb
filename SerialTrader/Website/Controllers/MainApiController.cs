@@ -5,16 +5,17 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Security;
-using WaterCons.Helpers;
 
-using WaterCons.Library.Interfaces;
-using WaterCons.Library.DataServices;
-using WaterCons.Library.Business;
-using WaterCons.Library.Entity;
-using WaterCons.Library.Models;
-using WaterCons.Library.Common;
+//using Website.Helpers;
 
-namespace WaterCons.Controllers
+using AppLibrary.Interfaces;
+using AppLibrary.DataServices;
+using AppLibrary.Business;
+using AppLibrary.Entity;
+using AppLibrary.Common;
+using AppLibrary.Model;
+
+namespace Website.Controllers
 {
     [RoutePrefix("api/main")]
     public class MainApiController : ApiController

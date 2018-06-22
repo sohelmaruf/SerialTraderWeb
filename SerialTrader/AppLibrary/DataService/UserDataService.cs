@@ -14,37 +14,37 @@ namespace AppLibrary.DataServices
         /// <summary>
         /// Create User
         /// </summary>
-        public void AddUser(user objUser)
+        public void AddUser(taccount objUser)
         {
-            dbConnection.users.Add(objUser);
+            dbConnection.taccounts.Add(objUser);
         }
 
-        public user GetUser(int ID)
+        public taccount GetUser(int ID)
         {
-            user objUser= dbConnection.users.SingleOrDefault(u => u.ID == ID);
+            taccount objUser = dbConnection.taccounts.SingleOrDefault(u => u.ACCOUNTID == ID);
             return objUser;
         }
         
-        public user GetUserByUserName(string userName)
+        public taccount GetUserByUserName(string userName)
         {
-            user user = dbConnection.users.SingleOrDefault(u => u.UserName == userName);
+            taccount user = dbConnection.taccounts.SingleOrDefault(u => u.EMAILADDRESS == userName);
             return user;
         }
 
-        public user Login(string userName, string password)
+        public taccount Login(string userName, string password)
         {
-            user user = dbConnection.users.SingleOrDefault(u => u.UserName == userName && u.Password == password);
+            taccount user = dbConnection.taccounts.SingleOrDefault(u => u.EMAILADDRESS == userName && u.LASTNAME == password);
             return user;
         }
 
-        public void UpdateLastLogin(user user)
+        public void UpdateLastLogin(taccount user)
         {
-            user.DateLastLogin = DateTime.Now;
+            //user.DateLastLogin = DateTime.Now;
         }
 
-        public void UpdateUser(user objUser)
+        public void UpdateUser(taccount objUser)
         {
-            dbConnection.users.Add(objUser);
+            dbConnection.taccounts.Add(objUser);
         }
     }
 }

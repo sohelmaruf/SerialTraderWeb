@@ -27,33 +27,33 @@ namespace AppLibrary.Business
             _UserDataService = dataService;
         }
         
-        public user AddUser(Nullable<int> clientID, string userName, string firstName, string lastName, string password, string passwordConfirmation, string emailAddress, string defaultPage, 
+        public taccount AddUser(Nullable<int> clientID, string userName, string firstName, string lastName, string password, string passwordConfirmation, string emailAddress, string defaultPage, 
             string role, out TransactionalInformation transaction)
         {
             transaction = new TransactionalInformation();
             UserBusinessRules userRules = new UserBusinessRules();
 
-            user objUser = new user();
+            taccount objUser = new taccount();
 
             try
             {
-                objUser.ClientID = clientID;
-                objUser.UserName = userName;
-                objUser.FirstName = firstName;
-                objUser.LastName = lastName;
-                objUser.Password = password;
-                objUser.EmailAddress = emailAddress;
-                objUser.DefaultPage = defaultPage;
-                objUser.DateCreated = System.DateTime.Now;
-                objUser.DateUpdated = System.DateTime.Now;
-                objUser.DateLastLogin = System.DateTime.Now;
-                objUser.Role = role;
-                objUser.IsActive = true;
+                //objUser.ClientID = clientID;
+                //objUser.UserName = userName;
+                //objUser.FirstName = firstName;
+                //objUser.LastName = lastName;
+                //objUser.Password = password;
+                //objUser.EmailAddress = emailAddress;
+                //objUser.DefaultPage = defaultPage;
+                //objUser.DateCreated = System.DateTime.Now;
+                //objUser.DateUpdated = System.DateTime.Now;
+                //objUser.DateLastLogin = System.DateTime.Now;
+                //objUser.Role = role;
+                //objUser.IsActive = true;
 
                 UsersDataService.CreateSession();
 
                 UsersDataService.BeginTransaction();
-                UsersDataService.AddUser(objUser);
+                //UsersDataService.AddUser(objUser);
                 UsersDataService.CommitTransaction(true);
                 transaction.ReturnStatus = true;
                 transaction.ReturnMessage.Add("User added successfully.");
@@ -72,13 +72,13 @@ namespace AppLibrary.Business
         }
 
 
-        public user UpdateUser(int ID, int clientID, string userName, string firstName, string lastName, string password, string emailAddress, string defaultPage,
+        public taccount UpdateUser(int ID, int clientID, string userName, string firstName, string lastName, string password, string emailAddress, string defaultPage,
             out TransactionalInformation transaction)
         {
             transaction = new TransactionalInformation();
 
 
-            user objUser = new user();
+            taccount objUser = new taccount();
 
             try
             {
@@ -87,19 +87,19 @@ namespace AppLibrary.Business
 
                 objUser = UsersDataService.GetUser(ID);
 
-                objUser.ClientID = clientID;
-                objUser.UserName = userName;
-                objUser.FirstName = firstName;
-                objUser.LastName = lastName;
-                objUser.Password = password;
-                objUser.EmailAddress = emailAddress;
-                objUser.DefaultPage = defaultPage;
-                objUser.DateUpdated = System.DateTime.Now;
-                objUser.DateLastLogin = System.DateTime.Now;
+                //objUser.ClientID = clientID;
+                //objUser.UserName = userName;
+                //objUser.FirstName = firstName;
+                //objUser.LastName = lastName;
+                //objUser.Password = password;
+                //objUser.EmailAddress = emailAddress;
+                //objUser.DefaultPage = defaultPage;
+                //objUser.DateUpdated = System.DateTime.Now;
+                //objUser.DateLastLogin = System.DateTime.Now;
 
 
                 UsersDataService.BeginTransaction();
-                UsersDataService.UpdateUser(objUser);
+                //UsersDataService.UpdateUser(objUser);
                 UsersDataService.CommitTransaction(true);
                 transaction.ReturnStatus = true;
                 transaction.ReturnMessage.Add("User updated successfully.");
@@ -118,11 +118,11 @@ namespace AppLibrary.Business
         }
 
 
-        public user GetUser(int UserID, out TransactionalInformation transaction)
+        public taccount GetUser(int UserID, out TransactionalInformation transaction)
         {
             transaction = new TransactionalInformation();
 
-            user objUser = new user();
+            taccount objUser = new taccount();
 
             try
             {

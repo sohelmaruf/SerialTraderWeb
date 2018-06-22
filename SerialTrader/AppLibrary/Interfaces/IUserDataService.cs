@@ -10,11 +10,11 @@ namespace AppLibrary.Interfaces
 {
     public interface IUserDataService : IDataService, IDisposable
     {
-        void AddUser(user objuser);
-        user GetUser(int ID);
-        user GetUserByUserName(string userName);
-        user Login(string userName, string password);
-        void UpdateLastLogin(user user);
-        void UpdateUser(user objuser);
+        void AddUser(taccount objuser);
+        taccount GetUser(int ID);
+        taccount GetUserByUserName(string userName);
+        taccount Login(string userName, string password);
+        void UpdateLastLogin(taccount user);
+        void UpdateUser(taccount objuser);
     }
 }

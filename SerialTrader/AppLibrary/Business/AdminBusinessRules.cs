@@ -22,7 +22,7 @@ namespace AppLibrary.Business
         /// </summary>
         /// <param name="objUser"></param>
         /// <param name="dataService"></param>
-        public void InitializeAdminBusinessRules(user objUser, IAdminDataService dataService)
+        public void InitializeAdminBusinessRules(taccount objUser, IAdminDataService dataService)
         {
             adminDataService = dataService;
             InitializeValidationRules(objUser);
@@ -33,7 +33,7 @@ namespace AppLibrary.Business
         /// </summary>
         /// <param name="user"></param>
         /// <param name="dataService"></param>
-        public void ValidateUser(user user, IAdminDataService dataService)
+        public void ValidateUser(taccount user, IAdminDataService dataService)
         {
             adminDataService = dataService;
 
@@ -46,7 +46,7 @@ namespace AppLibrary.Business
             ValidateRequired("EmailAddress", "Email Address");
             ValidateEmailAddress("EmailAddress", "Email Address");              
 
-            ValidateUniqueUserName(user.UserName);
+            ValidateUniqueUserName(user.EMAILADDRESS);
         }
 
         public void ValidateRegistration(RegisterInfo objRegisterInfo, IAdminDataService dataService)
@@ -69,18 +69,18 @@ namespace AppLibrary.Business
 
         public void ValidateUniqueOrganization(string title)
         {
-            IClientDataService dService = new ClientDataService();
-            if (!string.IsNullOrEmpty(title))
-            {
-                client objCLient = dService.GetClientByTitle(title);
-                if (objCLient != null)
-                {
-                    AddValidationError("Title", "- Organization '" + title + "' already exists. Please ask your account admin to create a user for you.");
-                }
-            }
+            //IClientDataService dService = new ClientDataService();
+            //if (!string.IsNullOrEmpty(title))
+            //{
+            //    client objCLient = dService.GetClientByTitle(title);
+            //    if (objCLient != null)
+            //    {
+            //        AddValidationError("Title", "- Organization '" + title + "' already exists. Please ask your account admin to create a user for you.");
+            //    }
+            //}
         }
 
-        public void ValidateExistingUser(user user, IAdminDataService dataService)
+        public void ValidateExistingUser(taccount user, IAdminDataService dataService)
         {
             adminDataService = dataService;
 
@@ -93,7 +93,7 @@ namespace AppLibrary.Business
             ValidateRequired("EmailAddress", "Email Address");
             ValidateEmailAddress("EmailAddress", "Email Address");
 
-            ValidateUniqueUserNameForExistingUser(user.ID, user.UserName);
+            //ValidateUniqueUserNameForExistingUser(user.ID, user.UserName);
 
         }
 
@@ -105,7 +105,7 @@ namespace AppLibrary.Business
         public void ValidateUniqueUserName(string userName)
         {
 
-            user user = adminDataService.GetUserByUserName(userName);
+            taccount user = adminDataService.GetUserByUserName(userName);
             if (user != null)
             {
                 AddValidationError("UserName", "- User '" + userName + "' already exists. Please choose a different User Name.");
@@ -120,13 +120,13 @@ namespace AppLibrary.Business
         /// <param name="userName"></param>
         public void ValidateUniqueUserNameForExistingUser(int userID, string userName)
         {
-            user user = adminDataService.GetUserByUserName(userName);
+            taccount user = adminDataService.GetUserByUserName(userName);
             if (user != null)
             {
-              if (user.ID != userID)
-              {
-                AddValidationError("UserName", "- User '" + userName + "' already exists. Please choose a different User Name");
-              }
+              //if (user.ID != userID)
+              //{
+              //  AddValidationError("UserName", "- User '" + userName + "' already exists. Please choose a different User Name");
+              //}
             }
 
         }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WaterCons.Helpers
+namespace Website.Helpers
 {  
     public class Utilities
     {

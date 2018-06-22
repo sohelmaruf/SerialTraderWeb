@@ -251,9 +251,6 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AdminAPIController.cs" />
     <Compile Include="Controllers\ApplicationMenusAPIController.cs" />
-    <Compile Include="Controllers\ClientsAPIController.cs" />
-    <Compile Include="Controllers\ContactsAPIController.cs" />
-    <Compile Include="Controllers\ListItemsAPIController.cs" />
     <Compile Include="Controllers\MainApiController.cs" />
     <Compile Include="Filters\ValidateModelStateFilter.cs" />
     <Compile Include="Filters\WebApiAuthenicationFilter.cs" />
@@ -1314,6 +1311,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AppLibrary\AppLibrary.csproj">
+      <Project>{1e0a0fc3-6272-4918-a9a4-d47bfa643acc}</Project>
+      <Name>AppLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

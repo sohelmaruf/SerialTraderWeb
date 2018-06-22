@@ -22,7 +22,7 @@ namespace AppLibrary.Business
         /// </summary>
         /// <param name="objUser"></param>
         /// <param name="dataService"></param>
-        public void InitializeUserBusinessRules(user objUser, IUserDataService dataService)
+        public void InitializeUserBusinessRules(taccount objUser, IUserDataService dataService)
         {
             userDataService = dataService;
             InitializeValidationRules(objUser);
@@ -33,7 +33,7 @@ namespace AppLibrary.Business
         /// </summary>
         /// <param name="user"></param>
         /// <param name="dataService"></param>
-        public void ValidateUser(user user, IUserDataService dataService)
+        public void ValidateUser(taccount user, IUserDataService dataService)
         {
             userDataService = dataService;
 
@@ -42,10 +42,10 @@ namespace AppLibrary.Business
             ValidateRequired("UserName", "UserName");
             ValidateRequired("Password", "Password");                     
 
-            ValidateUniqueUserName(user.UserName);
+            ValidateUniqueUserName(user.EMAILADDRESS);
         }
 
-        public void ValidateExistingUser(user user, IUserDataService dataService)
+        public void ValidateExistingUser(taccount user, IUserDataService dataService)
         {
             userDataService = dataService;
 
@@ -58,7 +58,7 @@ namespace AppLibrary.Business
             ValidateRequired("EmailAddress", "Email Address");
             ValidateEmailAddress("EmailAddress", "Email Address");
 
-            ValidateUniqueUserNameForExistingUser(user.ID, user.UserName);
+            //ValidateUniqueUserNameForExistingUser(user.EMAILADDRESS, user.EMAILADDRESS);
 
         }
 
@@ -72,7 +72,7 @@ namespace AppLibrary.Business
             IUserDataService dService = new UserDataService();
             if (!string.IsNullOrEmpty(userName))
             {
-                user user = dService.GetUserByUserName(userName);
+                taccount user = dService.GetUserByUserName(userName);
                 if (user != null)
                 {
                     AddValidationError("UserName", "- User '" + userName + "' already exists. Please choose a different User Name.");
@@ -87,13 +87,13 @@ namespace AppLibrary.Business
         /// <param name="userName"></param>
         public void ValidateUniqueUserNameForExistingUser(int userID, string userName)
         {
-            user user = userDataService.GetUserByUserName(userName);
+            taccount user = userDataService.GetUserByUserName(userName);
             if (user != null)
             {
-              if (user.ID != userID)
-              {
-                    AddValidationError("UserName", "- User '" + userName + "' already exists. Please choose a different User Name.");
-                }
+              //if (user.EMAILADDRESS != userID)
+              //{
+              //      AddValidationError("UserName", "- User '" + userName + "' already exists. Please choose a different User Name.");
+              //  }
             }
 
         }

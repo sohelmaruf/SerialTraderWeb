@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WaterCons.Models;
+using AppLibrary.Model;
 
-namespace WaterCons.Helpers
+namespace Website.Helpers
 {
     public class ApplicationInitializationBusinessService
     {

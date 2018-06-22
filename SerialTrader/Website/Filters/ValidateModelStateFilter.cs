@@ -9,15 +9,10 @@ using System.Web.Http.Filters;
 using System.Web.Http.Controllers;
 using System.Net;
 
-using WaterCons.Helpers;
-using WaterCons.Library.Interfaces;
-using WaterCons.Library.DataServices;
-using WaterCons.Library.Business;
-using WaterCons.Library.Entity;
-using WaterCons.Library.Models;
-using WaterCons.Library.Common;
+using Website.Helpers;
+using AppLibrary.Model;
 
-namespace WaterCons.Filters
+namespace Website.Filters
 {    
 
     public class ValidateModelStateAttribute : System.Web.Http.Filters.ActionFilterAttribute
