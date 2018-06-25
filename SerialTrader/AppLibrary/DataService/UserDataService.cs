@@ -33,7 +33,7 @@ namespace AppLibrary.DataServices
 
         public taccount Login(string userName, string password)
         {
-            taccount user = dbConnection.taccounts.SingleOrDefault(u => u.EMAILADDRESS == userName && u.LASTNAME == password);
+            taccount user = dbConnection.taccounts.SingleOrDefault(u => u.EMAILADDRESS == userName && u.PASSWORD == password);
             return user;
         }
 

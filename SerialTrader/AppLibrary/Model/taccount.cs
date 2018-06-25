@@ -21,5 +21,7 @@ namespace AppLibrary.Model
         public string ISENABLED { get; set; }
         public string POSTTOSLACK { get; set; }
         public string SLACKBOTCHANNEL { get; set; }
+        public string PASSWORD { get; set; }
+        public string ROLE { get; set; }
     }
 }

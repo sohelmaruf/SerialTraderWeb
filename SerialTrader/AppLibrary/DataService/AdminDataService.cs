@@ -77,7 +77,7 @@ namespace AppLibrary.DataServices
         /// <returns></returns>
         public taccount Login(string userName, string password)
         {
-            taccount user = dbConnection.taccounts.SingleOrDefault(u => u.EMAILADDRESS == userName && u.EMAILADDRESS == password);
+            taccount user = dbConnection.taccounts.SingleOrDefault(u => u.EMAILADDRESS == userName && u.PASSWORD == password);
             return user;
         }
 

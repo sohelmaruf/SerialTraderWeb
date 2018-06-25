@@ -29,7 +29,7 @@ namespace AppLibrary.Business
         
         public taccount AddUser(Nullable<int> clientID, string userName, string firstName, string lastName, string password, string passwordConfirmation, string emailAddress, string defaultPage, 
             string role, out TransactionalInformation transaction)
-        {
+     {
             transaction = new TransactionalInformation();
             UserBusinessRules userRules = new UserBusinessRules();
 
@@ -37,23 +37,23 @@ namespace AppLibrary.Business
 
             try
             {
-                //objUser.ClientID = clientID;
+                //objUser.ACCOUNTID = clientID;
                 //objUser.UserName = userName;
-                //objUser.FirstName = firstName;
-                //objUser.LastName = lastName;
-                //objUser.Password = password;
-                //objUser.EmailAddress = emailAddress;
+                objUser.FIRSTNAME = firstName;
+                objUser.LASTNAME = lastName;
+                objUser.PASSWORD = password;
+                objUser.EMAILADDRESS = emailAddress;
                 //objUser.DefaultPage = defaultPage;
                 //objUser.DateCreated = System.DateTime.Now;
                 //objUser.DateUpdated = System.DateTime.Now;
                 //objUser.DateLastLogin = System.DateTime.Now;
-                //objUser.Role = role;
-                //objUser.IsActive = true;
+                objUser.ROLE = role;
+                objUser.ISENABLED = "true";
 
                 UsersDataService.CreateSession();
 
                 UsersDataService.BeginTransaction();
-                //UsersDataService.AddUser(objUser);
+                UsersDataService.AddUser(objUser);
                 UsersDataService.CommitTransaction(true);
                 transaction.ReturnStatus = true;
                 transaction.ReturnMessage.Add("User added successfully.");

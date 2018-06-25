@@ -41,6 +41,8 @@
           <Property Name="ISENABLED" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="POSTTOSLACK" Type="varchar" MaxLength="5" />
           <Property Name="SLACKBOTCHANNEL" Type="varchar" MaxLength="256" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="50" />
+          <Property Name="ROLE" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="texchanges">
           <Key>
@@ -226,6 +228,8 @@ FROM `tprices` AS `tprices`</DefiningQuery>
           <Property Name="ISENABLED" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="POSTTOSLACK" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="SLACKBOTCHANNEL" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ROLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="texchanx">
           <Key>
@@ -417,6 +421,8 @@ FROM `tprices` AS `tprices`</DefiningQuery>
           <EntitySetMapping Name="taccounts">
             <EntityTypeMapping TypeName="serialtraderModel.taccount">
               <MappingFragment StoreEntitySet="taccount">
+                <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
                 <ScalarProperty Name="ACCOUNTID" ColumnName="ACCOUNTID" />
                 <ScalarProperty Name="FIRSTNAME" ColumnName="FIRSTNAME" />
                 <ScalarProperty Name="LASTNAME" ColumnName="LASTNAME" />
