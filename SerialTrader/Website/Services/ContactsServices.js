@@ -6,12 +6,16 @@
             ajaxService.AjaxPostWithNoAuthenication(contact, "/api/contacts/CreateContact", successFunction, errorFunction);
         };
 
+        this.updateContact = function (contact, successFunction, errorFunction) {
+            ajaxService.AjaxPost(contact, "/api/contacts/UpdateContact", successFunction, errorFunction);
+        };
+
         this.getContact = function (successFunction, errorFunction) {
             ajaxService.AjaxGet("/api/contacts/GetContact", successFunction, errorFunction);
         };        
 
-        this.updateContact = function (contact, successFunction, errorFunction) {
-            ajaxService.AjaxPost(contact, "/api/contacts/UpdateContact", successFunction, errorFunction);
+        this.getContacts = function (contact, successFunction, errorFunction) {
+            ajaxService.AjaxPost(contact, "/api/contacts/GetContacts", successFunction, errorFunction);
         };
 
     }]);

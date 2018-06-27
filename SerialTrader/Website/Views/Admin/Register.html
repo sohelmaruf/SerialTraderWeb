@@ -13,8 +13,8 @@
                         <form class="form-horizontal" style="background-color: #f7f7f7; -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
                                     -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
                                     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3); padding-top:30px; padding-right:80px;" role="form">
-                            
-                            <div class="form-group">
+
+                            <!--<div class="form-group">
                                 <label for="ContactPerson" class="col-sm-3 control-label">Subscription</label>
                                 <div class="col-sm-9">
                                     <select ng-model="SubscriptionType" id="selectbasic" name="selectbasic" class="form-control input-md">
@@ -24,17 +24,16 @@
                                     </select>
                                     <a href="#Main/Pricing" style="color:blue" class="pull-right need-help">Product Pricing </a>
                                 </div>
-                            </div>
-
-                            <div class="form-group">
+                            </div>-->
+                                                    <!--<div class="form-group">
                                 <label for="Title" class="col-sm-3 control-label">*Organization</label>
                                 <div class="col-sm-9">
                                     <input ng-model="Title" type="text" id="Title" placeholder="Organization Name" class="form-control" ng-class="{'validation-error': TitleInputError}" autofocus>
                                 </div>
-                            </div>
+                            </div>-->
 
                             <div class="form-group">
-                                <label for="ContactPerson" class="col-sm-3 control-label">* Contact</label>
+                                <label for="ContactPerson" class="col-sm-3 control-label">* Full Name</label>
                                 <div class="col-sm-9">
                                     <input ng-model="ContactPerson" type="text" id="ContactPerson" placeholder="Contact Person Name" class="form-control" ng-class="{'validation-error': ContactPersonInputError}">
                                     <span class="help-block">Last Name, First Name, eg.: Smith, Harry</span>
@@ -48,28 +47,29 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="Address" class="col-sm-3 control-label">Address</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="Address" type="text" id="Address" placeholder="Address" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="email" class="col-sm-3 control-label">* Email</label>
                                 <div class="col-sm-9">
                                     <input ng-model="Email" type="email" id="email" placeholder="Email" class="form-control" ng-class="{'validation-error': EmailAddressInputError}">
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="Address" class="col-sm-3 control-label">Address</label>
-                                <div class="col-sm-9">
-                                    <input ng-model="Address" type="text" id="Address" placeholder="Address" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 <label for="UserName" class="col-sm-3 control-label">* User Name</label>
                                 <div class="col-sm-9">
-                                    <input ng-model="UserName" type="text" id="UserName" placeholder="User Name" class="form-control" ng-class="{'validation-error': UserNameInputError}" >
+                                    <input ng-model="UserName" type="text" id="UserName" placeholder="User Name" class="form-control" ng-class="{'validation-error': UserNameInputError}">
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="form-group">
                                 <label for="password" class="col-sm-3 control-label">* Password</label>
                                 <div class="col-sm-9">
-                                    <input ng-model="Password" type="password" id="password" placeholder="Password" class="form-control" ng-class="{'validation-error': PasswordInputError}" >
+                                    <input ng-model="Password" type="password" id="password" placeholder="Password" class="form-control" ng-class="{'validation-error': PasswordInputError}">
                                 </div>
                             </div>
 

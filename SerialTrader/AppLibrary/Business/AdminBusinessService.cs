@@ -172,11 +172,11 @@ namespace AppLibrary.Business
             try
             {
 
-                //user.UserName = userName.Trim();
-                //user.Password = password.Trim();
+                user.EMAILADDRESS= userName.Trim();
+                user.PASSWORD = password.Trim();
 
                 AdminDataService.CreateSession();
-                user = AdminDataService.Login(userName, password);
+                user = AdminDataService.Login(user.EMAILADDRESS, user.PASSWORD);
 
                 if (user!=null)              
                 {

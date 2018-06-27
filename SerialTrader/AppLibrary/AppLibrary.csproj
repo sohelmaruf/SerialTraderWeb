@@ -54,6 +54,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -66,35 +67,59 @@
     <Compile Include="Business\AdminBusinessRules.cs" />
     <Compile Include="Business\AdminBusinessService.cs" />
     <Compile Include="Business\ApplicationInitializationBusinessService.cs" />
+    <Compile Include="Business\ContactBusinessRules.cs" />
+    <Compile Include="Business\ContactBusinessService.cs" />
+    <Compile Include="Business\AccountsBusinessRules.cs" />
+    <Compile Include="Business\AccountsBusinessService.cs" />
+    <Compile Include="Business\MasterTradesBusinessRules.cs" />
+    <Compile Include="Business\MasterTradesBusinessService.cs" />
+    <Compile Include="Business\TradesBusinessRules.cs" />
+    <Compile Include="Business\TradesBusinessService.cs" />
     <Compile Include="Business\UserBusinessRules.cs" />
     <Compile Include="Business\UserBusinessService.cs" />
     <Compile Include="Common\Constants.cs" />
+    <Compile Include="Common\DataGridPagingInformation.cs" />
     <Compile Include="Common\EmailSender.cs" />
     <Compile Include="Common\TransactionalInformation.cs" />
+    <Compile Include="Common\Utilities.cs" />
     <Compile Include="Common\Utils.cs" />
     <Compile Include="Common\ValidationRules.cs" />
     <Compile Include="Common\Validations.cs" />
     <Compile Include="Common\WebUtils.cs" />
-    <Compile Include="DataService\ActivityLogDataService.cs" />
-    <Compile Include="DataService\AdminDataService.cs" />
-    <Compile Include="DataService\ApplicationDataService.cs" />
-    <Compile Include="DataService\EntityFrameworkDataService.cs" />
-    <Compile Include="DataService\UserDataService.cs" />
+    <Compile Include="DataServices\ActivityLogDataService.cs" />
+    <Compile Include="DataServices\AdminDataService.cs" />
+    <Compile Include="DataServices\ApplicationDataService.cs" />
+    <Compile Include="DataServices\ContactDataService.cs" />
+    <Compile Include="DataServices\EntityFrameworkDataService.cs" />
+    <Compile Include="DataServices\AccountsDataService.cs" />
+    <Compile Include="DataServices\MasterTradesDataService.cs" />
+    <Compile Include="DataServices\TradesDataService.cs" />
+    <Compile Include="DataServices\UserDataService.cs" />
     <Compile Include="Entity\AdminInfo.cs" />
     <Compile Include="Entity\ApplicationInfo.cs" />
     <Compile Include="Entity\ContactInfo.cs" />
+    <Compile Include="Entity\AccountInfo.cs" />
+    <Compile Include="Entity\MasterTradeInfo.cs" />
     <Compile Include="Entity\RegisterInfo.cs" />
     <Compile Include="Entity\TransactionalInfo.cs" />
+    <Compile Include="Entity\TrardeInfo.cs" />
     <Compile Include="Entity\UserInfo.cs" />
+    <Compile Include="Interfaces\IAccountsDataService.cs" />
     <Compile Include="Interfaces\IActivityLogDataService.cs" />
     <Compile Include="Interfaces\IAdminDataService.cs" />
     <Compile Include="Interfaces\IApplicationDataService.cs" />
+    <Compile Include="Interfaces\IContactDataService.cs" />
+    <Compile Include="Interfaces\IMasterTradesDataService.cs" />
     <Compile Include="Interfaces\Interfaces.cs" />
+    <Compile Include="Interfaces\ITradesDataService.cs" />
     <Compile Include="Interfaces\IUserDataService.cs" />
     <Compile Include="Model\activitylog.cs">
       <DependentUpon>SerialTraderModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\applicationmenu.cs">
+      <DependentUpon>SerialTraderModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\contact.cs">
       <DependentUpon>SerialTraderModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\SerialTraderModel.Context.cs">

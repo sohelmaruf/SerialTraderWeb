@@ -30,11 +30,35 @@
           <Property Name="MenuOrder" Type="int" Nullable="false" />
           <Property Name="RequiresAuthenication" Type="bool" Nullable="false" />
         </EntityType>
+        <EntityType Name="contacts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="100" />
+          <Property Name="HomePhone" Type="varchar" MaxLength="50" />
+          <Property Name="OfficePhone" Type="varchar" MaxLength="50" />
+          <Property Name="Street" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="Zipcode" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="Organization" Type="varchar" MaxLength="50" />
+          <Property Name="Designation" Type="varchar" MaxLength="50" />
+          <Property Name="Photo" Type="varchar" MaxLength="50" />
+          <Property Name="AllowNewsLetter" Type="bool" />
+          <Property Name="Comments" Type="varchar" MaxLength="1000" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Responded" Type="bool" />
+          <Property Name="CreateDate" Type="datetime" Precision="0" />
+        </EntityType>
         <EntityType Name="taccount">
           <Key>
             <PropertyRef Name="ACCOUNTID" />
           </Key>
-          <Property Name="ACCOUNTID" Type="bigint" Nullable="false" />
+          <Property Name="ACCOUNTID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FIRSTNAME" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="LASTNAME" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="EMAILADDRESS" Type="varchar" MaxLength="50" Nullable="false" />
@@ -190,6 +214,7 @@ warning 6002: The table/view 'def.serialtrader.tprices' does not have a primary 
         <EntityContainer Name="serialtraderModelStoreContainer">
           <EntitySet Name="activitylog" EntityType="Self.activitylog" Schema="serialtrader" store:Type="Tables" />
           <EntitySet Name="applicationmenu" EntityType="Self.applicationmenu" Schema="serialtrader" store:Type="Tables" />
+          <EntitySet Name="contacts" EntityType="Self.contacts" Schema="serialtrader" store:Type="Tables" />
           <EntitySet Name="taccount" EntityType="Self.taccount" Schema="serialtrader" store:Type="Tables" />
           <EntitySet Name="texchanges" EntityType="Self.texchanges" Schema="serialtrader" store:Type="Tables" />
           <EntitySet Name="tkeys" EntityType="Self.tkeys" Schema="serialtrader" store:Type="Tables" />
@@ -386,6 +411,7 @@ FROM `tprices` AS `tprices`</DefiningQuery>
           <EntitySet Name="tprices" EntityType="Self.tprice" />
           <EntitySet Name="applicationmenus" EntityType="serialtraderModel.applicationmenu" />
           <EntitySet Name="activitylogs" EntityType="serialtraderModel.activitylog" />
+          <EntitySet Name="contacts" EntityType="serialtraderModel.contact" />
         </EntityContainer>
         <EntityType Name="applicationmenu">
           <Key>
@@ -411,6 +437,30 @@ FROM `tprices` AS `tprices`</DefiningQuery>
           <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Exception" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="LogTime" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="contact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="HomePhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OfficePhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Street" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Zipcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Organization" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AllowNewsLetter" Type="Boolean" />
+          <Property Name="Comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Responded" Type="Boolean" />
+          <Property Name="CreateDate" Type="DateTime" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -607,6 +657,31 @@ FROM `tprices` AS `tprices`</DefiningQuery>
                 <ScalarProperty Name="Module" ColumnName="Module" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contacts">
+            <EntityTypeMapping TypeName="serialtraderModel.contact">
+              <MappingFragment StoreEntitySet="contacts">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Responded" ColumnName="Responded" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="AllowNewsLetter" ColumnName="AllowNewsLetter" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Organization" ColumnName="Organization" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="OfficePhone" ColumnName="OfficePhone" />
+                <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

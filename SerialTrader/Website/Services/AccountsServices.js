@@ -2,20 +2,36 @@
 
     app.register.service('accountsService', ['ajaxService', function (ajaxService) {
 
-        this.registerUser = function (user, successFunction, errorFunction) {
-            ajaxService.AjaxPostWithNoAuthenication(user, "/api/accounts/RegisterUser", successFunction, errorFunction);
+        this.createAccount = function (account, successFunction, errorFunction) {
+            ajaxService.AjaxPost(account, "/api/accounts/CreateAccount", successFunction, errorFunction);
         };
 
-        this.login = function (user, successFunction, errorFunction) {
-            ajaxService.AjaxPostWithNoAuthenication(user, "/api/accounts/Login", successFunction, errorFunction);
+        this.createAccountDetailLineItem = function (account, successFunction, errorFunction) {
+            ajaxService.AjaxPost(account, "/api/accounts/CreateAccountLineItem", successFunction, errorFunction);
         };
 
-        this.getUser = function (successFunction, errorFunction) {
-            ajaxService.AjaxGet("/api/accounts/GetUser", successFunction, errorFunction);
-        };        
+        this.updateAccountDetailLineItem = function (account, successFunction, errorFunction) {
+            ajaxService.AjaxPost(account, "/api/accounts/UpdateAccountLineItem", successFunction, errorFunction);
+        };
 
-        this.updateUser = function (user, successFunction, errorFunction) {
-            ajaxService.AjaxPost(user, "/api/accounts/UpdateUser", successFunction, errorFunction);
+        this.deleteAccountDetailLineItem = function (account, successFunction, errorFunction) {
+            ajaxService.AjaxPost(account, "/api/accounts/DeleteAccountLineItem", successFunction, errorFunction);
+        };
+
+        this.initializeAccount = function (account, successFunction, errorFunction) {
+            ajaxService.AjaxPost(account, "/api/accounts/InitializeAccount", successFunction, errorFunction);
+        };
+
+        this.getAccounts = function (account, successFunction, errorFunction) {
+            ajaxService.AjaxPost(account, "/api/accounts/GetAccounts", successFunction, errorFunction);
+        };
+
+        this.getAccount = function (account, successFunction, errorFunction) {
+            ajaxService.AjaxPost(account, "/api/accounts/GetAccount", successFunction, errorFunction);
+        };
+
+        this.updateAccount = function (account, successFunction, errorFunction) {
+            ajaxService.AjaxPost(account, "/api/accounts/UpdateAccount", successFunction, errorFunction);
         };
 
     }]);

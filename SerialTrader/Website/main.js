@@ -17,11 +17,12 @@ require.config({
         'mainService': 'services/mainServices',
         'ajaxService': 'services/ajaxServices',
         'alertsService': 'services/alertsServices',
-        'accountsService': 'services/accountsServices',
         'adminService': 'services/AdminServices',
         'contactsService': 'services/contactsServices',
         'helpService': 'services/HelpServices',
-        
+        'dataGridService': 'services/DataGridService',
+
+        'accountsService': 'services/accountsServices',
         'angular-sanitize': 'scripts/angular-sanitize'
     },
 

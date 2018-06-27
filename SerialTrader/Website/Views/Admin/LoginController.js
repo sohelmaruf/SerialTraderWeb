@@ -22,7 +22,7 @@ define(['application-configuration', 'adminService', 'alertsService'], function 
 
             $scope.loginCompleted = function (response) {
                 $rootScope.MenuItems = response.MenuItems;        
-                window.location = "Application.html#/Admin/Dashboard";
+                window.location = "Application.html#/Accounts/Accounts";
             }
 
             $scope.loginError = function (response) {

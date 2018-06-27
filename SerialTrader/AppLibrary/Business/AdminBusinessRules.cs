@@ -41,7 +41,7 @@ namespace AppLibrary.Business
 
             ValidateRequired("FirstName", "First Name");
             ValidateRequired("LastName", "Last Name");
-            ValidateRequired("UserName", "User Name");
+           // ValidateRequired("UserName", "User Name");
             ValidateRequired("Password", "Password");           
             ValidateRequired("EmailAddress", "Email Address");
             ValidateEmailAddress("EmailAddress", "Email Address");              
@@ -55,10 +55,10 @@ namespace AppLibrary.Business
 
             InitializeValidationRules(objRegisterInfo);
 
-            ValidateRequired("Title", "Organization Name");
+            //ValidateRequired("Title", "Organization Name");
             ValidateRequired("ContactPerson", "Contact Person Name");
             ValidateRequired("Email", "Email Address");
-            ValidateRequired("UserName", "UserName");
+            //ValidateRequired("UserName", "UserName");
             ValidateRequired("Password", "Password");
 
             ValidateEmailAddress("Email", "Email Address");
@@ -88,7 +88,7 @@ namespace AppLibrary.Business
 
             ValidateRequired("FirstName", "First Name");
             ValidateRequired("LastName", "Last Name");
-            ValidateRequired("UserName", "User Name");
+            //ValidateRequired("UserName", "User Name");
             ValidateRequired("Password", "Password");
             ValidateRequired("EmailAddress", "Email Address");
             ValidateEmailAddress("EmailAddress", "Email Address");

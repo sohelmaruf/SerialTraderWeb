@@ -248,7 +248,9 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AdminAPIController.cs" />
     <Compile Include="Controllers\ApplicationMenusAPIController.cs" />
+    <Compile Include="Controllers\ContactsAPIController.cs" />
     <Compile Include="Controllers\MainApiController.cs" />
+    <Compile Include="Controllers\AccountsApiController.cs" />
     <Compile Include="Filters\ValidateModelStateFilter.cs" />
     <Compile Include="Filters\WebApiAuthenicationFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -273,7 +275,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Accounts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Application.html" />
@@ -1176,6 +1177,10 @@
     <Content Include="Views\Admin\PasswordRecoveryController.js" />
     <Content Include="Views\Admin\Register.html" />
     <Content Include="Views\Admin\RegisterController.js" />
+    <Content Include="Views\Accounts\Accounts.html" />
+    <Content Include="Views\Accounts\AccountsController.js" />
+    <Content Include="Views\Contacts\Contacts.html" />
+    <Content Include="Views\Contacts\ContactsController.js" />
     <Content Include="Views\Customers\CustomerInquiry.html" />
     <Content Include="Views\Customers\CustomerInquiryController.js" />
     <Content Include="Views\Customers\CustomerMaintenance.html" />
@@ -1293,6 +1298,10 @@
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Trades\MasterTrades.html" />
+    <Content Include="Views\Trades\MasterTradesController.js" />
+    <Content Include="Views\Trades\SerialTrades.html" />
+    <Content Include="Views\Trades\SerialTradesController.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

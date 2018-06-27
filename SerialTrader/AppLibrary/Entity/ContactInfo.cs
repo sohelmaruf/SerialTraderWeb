@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using AppLibrary.Common;
+using AppLibrary.Model;
 
 namespace AppLibrary.Entity
 {
@@ -29,5 +30,8 @@ namespace AppLibrary.Entity
         public string Comments { get; set; }
         public Nullable<bool> Responded { get; set; }
         public Nullable<DateTime> CreateDate { get; set; }
+
+        public contact Contact = new contact();
+        public List<contact> Contacts = new List<contact>();
     }
 }

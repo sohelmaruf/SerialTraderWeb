@@ -17,7 +17,11 @@ namespace AppLibrary.Common
         public int PageSize;
         public int ID { get; set; }
         public Boolean IsAuthenicated;
-
+        public int LineItemNumber { get; set; }
+        public int CurrentPageNumber { get; set; }
+        public string SortExpression { get; set; }
+        public string SortDirection { get; set; }
+        
         public TransactionalInformation()
         {
             ReturnMessage = new List<String>();

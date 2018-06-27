@@ -38,5 +38,6 @@ namespace AppLibrary.Model
         public DbSet<tprice> tprices { get; set; }
         public DbSet<applicationmenu> applicationmenus { get; set; }
         public DbSet<activitylog> activitylogs { get; set; }
+        public DbSet<contact> contacts { get; set; }
     }
 }
