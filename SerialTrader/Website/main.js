@@ -22,6 +22,8 @@ require.config({
         'helpService': 'services/HelpServices',
         'dataGridService': 'services/DataGridService',
 
+        'tradesService': 'services/tradesServices',
+        'masterTradesService': 'services/masterTradesServices',
         'accountsService': 'services/accountsServices',
         'angular-sanitize': 'scripts/angular-sanitize'
     },

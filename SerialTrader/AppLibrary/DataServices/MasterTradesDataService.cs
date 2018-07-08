@@ -29,7 +29,7 @@ namespace AppLibrary.DataServices
             return masterTrade;
         }
 
-        public List<tmastertrade> MasterTradeInquiry(string ACCOUNTID, string EXCHANGE, DataGridPagingInformation paging, out TransactionalInformation transaction)
+        public List<tmastertrade> MasterTradeInquiry(string TradeType, string TradingPair, DataGridPagingInformation paging, out TransactionalInformation transaction)
         {
             transaction = new TransactionalInformation();
 
@@ -43,14 +43,14 @@ namespace AppLibrary.DataServices
             int numberOfRows = 0;
             var customerQuery = dbConnection.tmastertrades.AsQueryable();
 
-            if (ACCOUNTID != null && ACCOUNTID.Trim().Length > 0)
+            if (TradeType != null && TradeType.Trim().Length > 0)
             {
-                customerQuery = customerQuery.Where(c => c.ACCOUNTID.Equals(ACCOUNTID));
+                customerQuery = customerQuery.Where(c => c.TRADETYPE.StartsWith(TradeType));
             }
 
-            if (EXCHANGE != null && EXCHANGE.Trim().Length > 0)
+            if (TradingPair != null && TradingPair.Trim().Length > 0)
             {
-                customerQuery = customerQuery.Where(c => c.EXCHANGE.StartsWith(EXCHANGE));
+                customerQuery = customerQuery.Where(c => c.TRADINGPAIR.StartsWith(TradingPair));
             }
 
             numberOfRows = customerQuery.Count();

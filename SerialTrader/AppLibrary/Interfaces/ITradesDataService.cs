@@ -15,6 +15,6 @@ namespace AppLibrary.Interfaces
         void CreateTrade(ttrade trade);
         void UpdateTrade(ttrade trade);
         ttrade GetTrade(int TID);
-        List<ttrade> TradeInquiry(string ACCOUNTID, string EXCHANGE, DataGridPagingInformation paging, out TransactionalInformation transaction);
+        List<ttrade> TradeInquiry(string OrderID, string OrderStatus, DataGridPagingInformation paging, out TransactionalInformation transaction);
     }
 }

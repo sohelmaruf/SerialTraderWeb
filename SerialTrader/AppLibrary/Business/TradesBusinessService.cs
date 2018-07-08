@@ -190,7 +190,7 @@ namespace AppLibrary.Business
         }
 
      
-        public List<ttrade> TradeInquiry(string ACCOUNTID, string EXCHANGE, DataGridPagingInformation paging, out TransactionalInformation transaction)
+        public List<ttrade> TradeInquiry(string OrderID, string OrderStatus, DataGridPagingInformation paging, out TransactionalInformation transaction)
         {
             transaction = new TransactionalInformation();
 
@@ -199,7 +199,7 @@ namespace AppLibrary.Business
             try
             {
                 tradesDataService.CreateSession();
-                tradeList = tradesDataService.TradeInquiry(ACCOUNTID, EXCHANGE, paging, out transaction);
+                tradeList = tradesDataService.TradeInquiry(OrderID, OrderStatus, paging, out transaction);
             }
             catch (Exception ex)
             {

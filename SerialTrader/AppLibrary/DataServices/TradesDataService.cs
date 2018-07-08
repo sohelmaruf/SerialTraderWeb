@@ -29,7 +29,7 @@ namespace AppLibrary.DataServices
             return trade;
         }
 
-        public List<ttrade> TradeInquiry(string ACCOUNTID, string EXCHANGE, DataGridPagingInformation paging, out TransactionalInformation transaction)
+        public List<ttrade> TradeInquiry(string OrderID, string OrderStatus, DataGridPagingInformation paging, out TransactionalInformation transaction)
         {
             transaction = new TransactionalInformation();
 
@@ -43,14 +43,14 @@ namespace AppLibrary.DataServices
             int numberOfRows = 0;
             var customerQuery = dbConnection.ttrades.AsQueryable();
 
-            if (ACCOUNTID != null && ACCOUNTID.Trim().Length > 0)
+            if (OrderID != null && OrderID.Trim().Length > 0)
             {
-                customerQuery = customerQuery.Where(c => c.ACCOUNTID.Equals(ACCOUNTID));
+                customerQuery = customerQuery.Where(c => c.ORDERID.StartsWith(OrderID));
             }
 
-            if (EXCHANGE != null && EXCHANGE.Trim().Length > 0)
+            if (OrderStatus != null && OrderStatus.Trim().Length > 0)
             {
-                customerQuery = customerQuery.Where(c => c.EXCHANGE.StartsWith(EXCHANGE));
+                customerQuery = customerQuery.Where(c => c.ORDERSTATUS.StartsWith(OrderStatus));
             }
             
             numberOfRows = customerQuery.Count();

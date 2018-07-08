@@ -74,6 +74,10 @@ define(['application-configuration', 'contactsService', 'alertsService', 'dataGr
                 $scope.getContacts();
             }
 
+            $scope.createNew = function () {
+                window.location = "#Contacts/CreateContact";
+            }
+
             $scope.getContacts= function () {
                 var contactInquiry = $scope.createContactInquiryObject();
                 contactsService.getContacts(contactInquiry, $scope.contactInquiryCompleted, $scope.contactInquiryError);

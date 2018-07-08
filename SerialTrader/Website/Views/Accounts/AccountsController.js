@@ -83,6 +83,10 @@ define(['application-configuration', 'accountsService', 'alertsService', 'dataGr
                 alertsService.RenderErrorMessage(response.ReturnMessage);
             }
 
+            $scope.createNew = function () {
+                window.location = "#Accounts/CreateAccount";
+            }
+
             $scope.resetSearchFields = function () {
                 $scope.FirstName = "";
                 $scope.LastName = "";

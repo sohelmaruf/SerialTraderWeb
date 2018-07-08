@@ -1,0 +1,133 @@
+﻿
+<div ng-controller="contactController" ng-init="initializeController()">
+
+  <br />
+   
+  <main class="site-main page-main">
+    <div class="container">
+      <div class="row">
+        <section class="page col-sm-9">
+            <table cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                    <td style="vertical-align:top">
+                        <h2 class="page-title">TRADE UPDATE</h2>
+                    </td>
+                    <td>
+
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="email" class="col-sm-3 control-label">Account</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="Email" type="email" id="Email" placeholder="Account" class="form-control" ng-class="{'validation-error': EmailAddressInputError}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="firstName" class="col-sm-3 control-label">Exchange</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="OfficePhone" type="text" id="OfficePhone" placeholder="Exchange" class="form-control" autofocus>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="firstName" class="col-sm-3 control-label">Master Trade</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="Organization" type="text" id="Organization" placeholder="Master Trade" class="form-control" autofocus>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="birthDate" class="col-sm-3 control-label">Trade Group</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="Address" type="text" id="Address" placeholder="Trade Group" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="birthDate" class="col-sm-3 control-label">Trade Action</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="Address" type="text" id="Address" placeholder="Trade Action" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="birthDate" class="col-sm-3 control-label">Trading Pair</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="Address" type="text" id="Address" placeholder="Trading Pair" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="birthDate" class="col-sm-3 control-label">Trade Trading Price</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="Address" type="text" id="Address" placeholder="Trade Trading Price" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="birthDate" class="col-sm-3 control-label">Actual Rate</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="Address" type="text" id="Address" placeholder="Actual Rate" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="birthDate" class="col-sm-3 control-label">Quantity</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="Address" type="text" id="Address" placeholder="Quantity" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="birthDate" class="col-sm-3 control-label">Order</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="Address" type="text" id="Address" placeholder="Order" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="birthDate" class="col-sm-3 control-label">Order Status</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="Address" type="text" id="Address" placeholder="Order Status" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="birthDate" class="col-sm-3 control-label">Order Result</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="Address" type="text" id="Address" placeholder="Order Result" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="birthDate" class="col-sm-3 control-label">Retry if Cancelled</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="Address" type="text" id="Address" placeholder="Retry if Cancelled" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="birthDate" class="col-sm-3 control-label">UnExchange Price</label>
+                                <div class="col-sm-9">
+                                    <input ng-model="Address" type="text" id="Address" placeholder="UnExchange Price" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="birthDate" class="col-sm-3 control-label">Comments</label>
+                                <div class="col-sm-9">
+                                    <textarea ng-model="Comments" name="Comments" cols="40" rows="4" class="form-control" style="width:550px; height:100px"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-9 col-sm-offset-3">
+                                    <button type="submit" class="btn btn-primary btn-block" ng-click="registerContact()">Save</button>
+                                </div>
+                            </div>
+                        </form> <!-- /form -->
+                    </td>
+                </tr>
+            </table>
+
+            <div style="padding-top:0px; padding-bottom:0px">
+                <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)"><div ng-bind-html="MessageBox"></div></alert>
+            </div>
+        </section>
+
+        
+      </div>
+    </div>
+  </main>
+
+</div>

@@ -102,7 +102,7 @@
     <Compile Include="Entity\MasterTradeInfo.cs" />
     <Compile Include="Entity\RegisterInfo.cs" />
     <Compile Include="Entity\TransactionalInfo.cs" />
-    <Compile Include="Entity\TrardeInfo.cs" />
+    <Compile Include="Entity\TradeInfo.cs" />
     <Compile Include="Entity\UserInfo.cs" />
     <Compile Include="Interfaces\IAccountsDataService.cs" />
     <Compile Include="Interfaces\IActivityLogDataService.cs" />

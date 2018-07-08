@@ -1,24 +1,33 @@
 ﻿"use strict";
 
-define(['application-configuration', 'accountsService', 'alertsService', 'dataGridService'], function (app) {
+define(['application-configuration', 'masterTradesService', 'alertsService', 'dataGridService'], function (app) {
 
-    app.register.controller('accountsController', ['$scope', '$rootScope', 'accountsService', 'alertsService', 'dataGridService',
-        function ($scope, $rootScope, accountsService, alertsService, dataGridService) {
+    app.register.controller('masterTradesController', ['$scope', '$rootScope', 'masterTradesService', 'alertsService', 'dataGridService',
+        function ($scope, $rootScope, masterTradesService, alertsService, dataGridService) {
 
             $scope.initializeController = function () {
 
-                $rootScope.applicationModule = "Accounts";
+                $rootScope.applicationModule = "MasterTrades";
 
                 dataGridService.initializeTableHeaders();
 
-                dataGridService.addHeader("Account #", "ACCOUNTID");
-                dataGridService.addHeader("First Name", "FIRSTNAME");
-                dataGridService.addHeader("Last Name", "LASTNAME");
-                dataGridService.addHeader("Email", "EMAILADDRESS");
-                dataGridService.addHeader("Slack", "SLACKBOTCHANNEL");
+
+                dataGridService.addHeader("ID #", "MASTERID");
+                dataGridService.addHeader("Type", "TRADETYPE");
+                dataGridService.addHeader("Exchange", "EXCHANGE");
+                dataGridService.addHeader("Paid", "TRADINGPAIR");
+                dataGridService.addHeader("Buy Price", "BUYPRICE");
+                dataGridService.addHeader("Buy Total", "BUYTOTAL");
+                dataGridService.addHeader("Sell Price", "SELLPRICE");
+                dataGridService.addHeader("Sell Total", "SELLTOTAL");
+                dataGridService.addHeader("Sell Qnt", "SELLQUANTITY");
+                dataGridService.addHeader("Action", "FIRSTACTION");
+
+
+
 
                 $scope.tableHeaders = dataGridService.setTableHeaders();
-                $scope.defaultSort = dataGridService.setDefaultSort("FIRSTNAME");
+                $scope.defaultSort = dataGridService.setDefaultSort("TradeType");
 
                 $scope.changeSorting = function (column) {
 
@@ -29,8 +38,7 @@ define(['application-configuration', 'accountsService', 'alertsService', 'dataGr
                     $scope.SortExpression = dataGridService.getSortExpression();
                     $scope.CurrentPageNumber = 1;
 
-                    $scope.getAccounts();
-
+                    $scope.getMasterTrades();
                 };
 
 
@@ -38,45 +46,45 @@ define(['application-configuration', 'accountsService', 'alertsService', 'dataGr
                     return dataGridService.setSortIndicator(column, $scope.defaultSort);
                 };
 
-                $scope.FirstName = "";
-                $scope.LastName = "";
+                $scope.TradeType = "";
+                $scope.TradingPair = "";
 
                 $scope.PageSize = 15;
                 $scope.SortDirection = "DESC";
-                $scope.SortExpression = "FIRSTNAME";
+                $scope.SortExpression = "TRADETYPE";
                 $scope.CurrentPageNumber = 1;
 
                 $rootScope.closeAlert = dataGridService.closeAlert;
 
-                $scope.Accounts = [];
+                $scope.mastertrades = [];
 
-                $scope.getAccounts();
+                $scope.getMasterTrades();
 
             }
 
-            $scope.accountInquiryCompleted = function (response, status) {
+            $scope.mastertradeInquiryCompleted = function (response, status) {
 
                 alertsService.RenderSuccessMessage(response.ReturnMessage);
-                $scope.accounts = response.Accounts;
-                $scope.TotalAccounts = response.TotalRows;
+                $scope.mastertrades = response.MasterTrades;
+                $scope.TotalMasterTrades = response.TotalRows;
                 $scope.TotalPages = response.TotalPages;
             }
 
-            $scope.searchAccounts = function () {
+            $scope.searchMasterTrades = function () {
                 $scope.CurrentPageNumber = 1;
-                $scope.getAccounts();
+                $scope.getMasterTrades();
             }
 
             $scope.pageChanged = function () {
-                $scope.getAccounts();
+                $scope.getMasterTrades();
             }
 
-            $scope.getAccounts = function () {
-                var accountInquiry = $scope.createAccountInquiryObject();
-                accountsService.getAccounts(accountInquiry, $scope.accountInquiryCompleted, $scope.accountInquiryError);
+            $scope.getMasterTrades = function () {
+                var mastertradeInquiry = $scope.createMasterTradeInquiryObject();
+                masterTradesService.getMasterTrades(mastertradeInquiry, $scope.mastertradeInquiryCompleted, $scope.mastertradeInquiryError);
             }
 
-            $scope.accountInquiryError = function (response, status) {
+            $scope.mastertradeInquiryError = function (response, status) {
                 if (response.IsAuthenicated == false) {
                     window.location = "/index.html";
                 }
@@ -84,23 +92,27 @@ define(['application-configuration', 'accountsService', 'alertsService', 'dataGr
             }
 
             $scope.resetSearchFields = function () {
-                $scope.FirstName = "";
-                $scope.LastName = "";
-                $scope.getAccounts();
+                $scope.TradeType = "";
+                $scope.TradingPair = "";
+                $scope.getMasterTrades();
             }
 
-            $scope.createAccountInquiryObject = function () {
+            $scope.createNew = function () {
+                window.location = "#Trades/CreateMasterTrade";
+            }
 
-                var accountInquiry = new Object();
+            $scope.createMasterTradeInquiryObject = function () {
 
-                accountInquiry.FirstName = $scope.FirstName;
-                accountInquiry.LastName = $scope.LastName;
-                accountInquiry.CurrentPageNumber = $scope.CurrentPageNumber;
-                accountInquiry.SortExpression = $scope.SortExpression;
-                accountInquiry.SortDirection = $scope.SortDirection;
-                accountInquiry.PageSize = $scope.PageSize;
+                var mastertradeInquiry = new Object();
 
-                return accountInquiry;
+                mastertradeInquiry.TradeType = $scope.TradeType;
+                mastertradeInquiry.TradingPair = $scope.TradingPair;
+                mastertradeInquiry.CurrentPageNumber = $scope.CurrentPageNumber;
+                mastertradeInquiry.SortExpression = $scope.SortExpression;
+                mastertradeInquiry.SortDirection = $scope.SortDirection;
+                mastertradeInquiry.PageSize = $scope.PageSize;
+
+                return mastertradeInquiry;
             }
         }]);
 

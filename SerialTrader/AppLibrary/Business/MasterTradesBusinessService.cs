@@ -190,7 +190,7 @@ namespace AppLibrary.Business
         }
 
 
-        public List<tmastertrade> MasterTradeInquiry(string ACCOUNTID, string EXCHANGE, DataGridPagingInformation paging, out TransactionalInformation transaction)
+        public List<tmastertrade> MasterTradeInquiry(string TradeType, string TradingPair, DataGridPagingInformation paging, out TransactionalInformation transaction)
         {
             transaction = new TransactionalInformation();
 
@@ -199,7 +199,7 @@ namespace AppLibrary.Business
             try
             {
                 masterTradesDataService.CreateSession();
-                masterTradeList = masterTradesDataService.MasterTradeInquiry(ACCOUNTID, EXCHANGE, paging, out transaction);
+                masterTradeList = masterTradesDataService.MasterTradeInquiry(TradeType, TradingPair, paging, out transaction);
             }
             catch (Exception ex)
             {

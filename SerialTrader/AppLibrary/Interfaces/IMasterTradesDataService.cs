@@ -15,6 +15,6 @@ namespace AppLibrary.Interfaces
         void CreateMasterTrade(tmastertrade masterTrade);
         void UpdateMasterTrade(tmastertrade masterTrade);
         tmastertrade GetMasterTrade(int MASTERID);
-        List<tmastertrade> MasterTradeInquiry(string ACCOUNTID, string EXCHANGE, DataGridPagingInformation paging, out TransactionalInformation transaction);
+        List<tmastertrade> MasterTradeInquiry(string TradeType, string TradingPair, DataGridPagingInformation paging, out TransactionalInformation transaction);
     }
 }

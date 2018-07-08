@@ -1,5 +1,5 @@
 ﻿
-<div ng-controller="contactsController" ng-init="initializeController()">
+<div ng-controller="tradesController" ng-init="initializeController()">
 
     <main class="site-main page-main">
         <div class="container">
@@ -9,22 +9,22 @@
                     <table cellspacing="0" cellpadding="0" border="0">
                         <tr>
                             <td style="vertical-align:top">
-                                <h2 class="page-title">MANAGE CONTACTS</h2>
+                                <h2 class="page-title">MANAGE TRADES</h2>
                             </td>
                         </tr>
                     </table>
                     <table class="table" cellspacing="0" cellpadding="0" border="0">
                         <tr>
-                            <td class="input-label-bottom" align="right" style="width:10%"><label>First Name:</label></td>
+                            <td class="input-label-bottom" align="right" style="width:10%"><label>Order:</label></td>
                             <td class="input-box-bottom" style="width:20%">
-                                <input ng-model="FirstName" type="text" style="width: 170px" />
+                                <input ng-model="OrderID" type="text" style="width: 170px" />
                             </td>
-                            <td class="input-label-bottom" align="right" style="width:10%"><label>Last Name:</label></td>
+                            <td class="input-label-bottom" align="right" style="width:10%"><label>Status:</label></td>
                             <td class="input-box-bottom" style="width:20%">
-                                <input ng-model="LastName" type="text" style="width: 170px" />
+                                <input ng-model="OrderStatus" type="text" style="width: 170px" />
                             </td>
                             <td class="input-label-bottom" style="width:20%; white-space:nowrap">
-                                <button class="btn btn-primary btn-large" ng-click="searchContacts()">Search</button>
+                                <button class="btn btn-primary btn-large" ng-click="searchTrades()">Search</button>
                                 <button class="btn btn-primary btn-large" ng-click="resetSearchFields()">Reset</button>
                                 <button class="btn btn-primary btn-large" ng-click="createNew()">New</button>
                             </td>
@@ -36,7 +36,7 @@
 
                             <tr>
                                 <th colspan="2" style="width: 50%">
-                                    <span ng-bind="TotalContacts"></span>&nbsp;Contacts
+                                    <span ng-bind="TotalTrades"></span>&nbsp;Trades
                                 </th>
                                 <th colspan="5" style="text-align: right; width: 50%">
                                     Page&nbsp;<span ng-bind="CurrentPageNumber"></span>&nbsp;of&nbsp;
@@ -50,21 +50,21 @@
 
                         </thead>
                         <tbody>
-                            <tr ng-repeat="contact in contacts">
-                                <td style="width: 10%; height: 25px"><a ng-href="#Contacts/CreateContact/{{contact.ID}}" style="cursor:pointer; text-decoration:underline; color:black">{{contact.ID}}</a></td>
-                                <td style="width: 20%; white-space: nowrap"><div ng-bind="contact.FirstName"></div></td>
-                                <td style="width: 20%; white-space: nowrap"><div ng-bind="contact.LastName"></div></td>
-                                <td style="width: 20%; white-space: nowrap"><div ng-bind="contact.Address"></div></td>
-                                <td style="width: 20%; white-space: nowrap"><div ng-bind="contact.HomePhone"></div></td>
-                                <td style="width: 20%; white-space: nowrap"><div ng-bind="contact.Email"></div></td>
-                                <td style="width: 20%; white-space: nowrap"><div ng-bind="contact.City"></div></td>
-                                <td style="width: 20%; white-space: nowrap"><div ng-bind="contact.State"></div></td>
-                                <td style="width: 20%; white-space: nowrap"><div ng-bind="contact.Zipcode"></div></td>
+                            <tr ng-repeat="trade in trades">
+                                <td style="width: 10%; height: 25px"><a ng-href="#Trades/CreateTrade/{{trade.TID}}" style="cursor:pointer; text-decoration:underline; color:black">{{trade.TID}}</a></td>
+                                <td style="width: 20%; white-space: nowrap"><div ng-bind="trade.ACCOUNTID"></div></td>
+                                <td style="width: 20%; white-space: nowrap"><div ng-bind="trade.EXCHANGE"></div></td>
+                                <td style="width: 20%; white-space: nowrap"><div ng-bind="trade.TRADINGACTION"></div></td>
+                                <td style="width: 20%; white-space: nowrap"><div ng-bind="trade.TRADINGPAIR"></div></td>
+                                <td style="width: 20%; white-space: nowrap"><div ng-bind="trade.TRADINGPRICE"></div></td>
+                                <td style="width: 20%; white-space: nowrap"><div ng-bind="trade.TRADINGQTY"></div></td>
+                                <td style="width: 20%; white-space: nowrap"><div ng-bind="trade.ORDERSTATUS"></div></td>
+                                <td style="width: 20%; white-space: nowrap"><div ng-bind="trade.ORDERRESULT"></div></td>
                             </tr>
                         </tbody>
                     </table>
 
-                    <pagination boundary-links="true" total-items="TotalContacts" items-per-page="PageSize" ng-change="pageChanged()" ng-model="CurrentPageNumber" class="pagination-lg" previous-text="Prev" next-text="Next" first-text="First" last-text="Last"></pagination>
+                    <pagination boundary-links="true" total-items="TotalTrades" items-per-page="PageSize" ng-change="pageChanged()" ng-model="CurrentPageNumber" class="pagination-lg" previous-text="Prev" next-text="Next" first-text="First" last-text="Last"></pagination>
 
                     <div style="padding-top:0px; padding-bottom:0px">
                         <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)"><div ng-bind-html="MessageBox"></div></alert>

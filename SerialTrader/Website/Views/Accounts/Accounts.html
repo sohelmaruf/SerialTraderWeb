@@ -23,10 +23,10 @@
                               <td class="input-box-bottom" style="width:20%">
                                   <input ng-model="LASTNAME" type="text" style="width: 170px" />
                               </td>
-                              <td class="input-label-bottom" style="width:20%">
+                              <td class="input-label-bottom" style="width:20%; white-space:nowrap">
                                   <button class="btn btn-primary btn-large" ng-click="searchAccounts()">Search</button>
                                   <button class="btn btn-primary btn-large" ng-click="resetSearchFields()">Reset</button>
-                                  <!--<button class="btn btn-primary btn-large" ng-click="resetSearchFields()">Create</button>-->
+                                  <button class="btn btn-primary btn-large" ng-click="createNew()">New</button>
                               </td>
                           </tr>
                       </table>
@@ -51,7 +51,7 @@
                           </thead>
                           <tbody>
                               <tr ng-repeat="account in accounts">
-                                  <td style="width: 10%; height: 25px"><a ng-href="#Accounts/Accounts/{{account.ACCOUNTID}}" style="cursor:pointer; text-decoration:underline; color:black">{{account.ACCOUNTID}}</a></td>
+                                  <td style="width: 10%; height: 25px"><a ng-href="#Accounts/CreateAccount/{{account.ACCOUNTID}}" style="cursor:pointer; text-decoration:underline; color:black">{{account.ACCOUNTID}}</a></td>
                                   <td style="width: 20%; white-space: nowrap"><div ng-bind="account.FIRSTNAME"></div></td>
                                   <td style="width: 20%; white-space: nowrap"><div ng-bind="account.LASTNAME"></div></td>
                                   <td style="width: 20%; white-space: nowrap"><div ng-bind="account.EMAILADDRESS"></div></td>

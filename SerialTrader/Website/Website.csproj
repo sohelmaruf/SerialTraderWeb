@@ -251,6 +251,8 @@
     <Compile Include="Controllers\ContactsAPIController.cs" />
     <Compile Include="Controllers\MainApiController.cs" />
     <Compile Include="Controllers\AccountsApiController.cs" />
+    <Compile Include="Controllers\MasterTradesApiController.cs" />
+    <Compile Include="Controllers\TradesApiController.cs" />
     <Compile Include="Filters\ValidateModelStateFilter.cs" />
     <Compile Include="Filters\WebApiAuthenicationFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -1163,8 +1165,12 @@
     <Content Include="Services\DataGridService.js" />
     <Content Include="Services\HelpServices.js" />
     <Content Include="Services\MainServices.js" />
+    <Content Include="Services\MasterTradesServices.js" />
     <Content Include="Services\OrdersServices.js" />
     <Content Include="Services\ProductsServices.js" />
+    <Content Include="Services\TradesServices.js" />
+    <Content Include="Views\Accounts\CreateAccount.html" />
+    <Content Include="Views\Accounts\CreateAccountController.js" />
     <Content Include="Views\Admin\Dashboard.html" />
     <Content Include="Views\Admin\DashboardController.js" />
     <Content Include="Views\Admin\Login.html" />
@@ -1179,8 +1185,12 @@
     <Content Include="Views\Admin\RegisterController.js" />
     <Content Include="Views\Accounts\Accounts.html" />
     <Content Include="Views\Accounts\AccountsController.js" />
+    <Content Include="Views\API\APIKeys.html" />
+    <Content Include="Views\API\APIKeysController.js" />
     <Content Include="Views\Contacts\Contacts.html" />
     <Content Include="Views\Contacts\ContactsController.js" />
+    <Content Include="Views\Contacts\CreateContact.html" />
+    <Content Include="Views\Contacts\CreateContactController.js" />
     <Content Include="Views\Customers\CustomerInquiry.html" />
     <Content Include="Views\Customers\CustomerInquiryController.js" />
     <Content Include="Views\Customers\CustomerMaintenance.html" />
@@ -1298,10 +1308,14 @@
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Trades\CreateMasterTrade.html" />
+    <Content Include="Views\Trades\CreateMasterTradeController.js" />
+    <Content Include="Views\Trades\CreateTrade.html" />
+    <Content Include="Views\Trades\CreateTradeController.js" />
     <Content Include="Views\Trades\MasterTrades.html" />
     <Content Include="Views\Trades\MasterTradesController.js" />
-    <Content Include="Views\Trades\SerialTrades.html" />
-    <Content Include="Views\Trades\SerialTradesController.js" />
+    <Content Include="Views\Trades\Trades.html" />
+    <Content Include="Views\Trades\TradesController.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

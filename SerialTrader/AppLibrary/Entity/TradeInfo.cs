@@ -9,7 +9,7 @@ using AppLibrary.Common;
 
 namespace AppLibrary.Entity
 {
-    public class TrardeInfo : TransactionalInformation
+    public class TradeInfo : TransactionalInformation
     {
         public int TID { get; set; }
         public int ACCOUNTID { get; set; }
