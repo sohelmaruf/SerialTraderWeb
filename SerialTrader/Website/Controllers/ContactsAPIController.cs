@@ -216,107 +216,64 @@ namespace Website.Controllers
         }
 
 
-        // GET: api/ContactsAPI
-        public IQueryable<contact> Getcontacts()
-        {
-            return db.contacts;
-        }
-
-        // GET: api/ContactsAPI/5
-        [ResponseType(typeof(contact))]
         [Route("GetContact")]
         [HttpGet]
         [WebApiAuthenication]
         [ValidateModelState]
-        public IHttpActionResult Getcontact(int id)
+        public HttpResponseMessage GetContact(int contactID)
         {
-            contact contact = db.contacts.Find(id);
-            if (contact == null)
+            ContactInfo objContactInfo = new ContactInfo();
+            //ProductsApiModel productsWebApiModel = new ProductsApiModel();
+            TransactionalInformation transaction = new TransactionalInformation();
+            ContactBusinessService contactsBusinessService;
+            
+            objContactInfo.IsAuthenicated = true;
+
+            contactsBusinessService = new ContactBusinessService(contactDataService);
+
+            contact cont = contactsBusinessService.GetContact(contactID, out transaction);
+
+            objContactInfo.Contact = cont;
+            objContactInfo.IsAuthenicated = true;
+            objContactInfo.ReturnStatus = transaction.ReturnStatus;
+            objContactInfo.ReturnMessage = transaction.ReturnMessage;
+
+            if (transaction.ReturnStatus == true)
             {
-                return NotFound();
+                var response = Request.CreateResponse<ContactInfo>(HttpStatusCode.OK, objContactInfo);
+                return response;
             }
 
-            return Ok(contact);
+            var badResponse = Request.CreateResponse<ContactInfo>(HttpStatusCode.BadRequest, objContactInfo);
+            return badResponse;
         }
 
-        // PUT: api/ContactsAPI/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult Putcontact(int id, contact contact)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
-            if (id != contact.ID)
-            {
-                return BadRequest();
-            }
+        //[Route("GetContact")]
+        //[WebApiAuthenication]
+        //[ValidateModelState]
+        //[HttpGet]
+        //public HttpResponseMessage GetContact(HttpRequestMessage request, [FromBody] ContactInfo objContactInfo)
+        //{
+        //    TransactionalInformation transaction = new TransactionalInformation();
+        //    ContactBusinessService contactBusinessService;
+        //    objContactInfo.IsAuthenicated = true;
 
-            db.Entry(contact).State = EntityState.Modified;
+        //    contactBusinessService = new ContactBusinessService(contactDataService);
+        //    contact contact = contactBusinessService.GetContact(objContactInfo.ID, out transaction);
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!contactExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    if (transaction.ReturnStatus == false)
+        //    {
+        //        objContactInfo.ReturnMessage = transaction.ReturnMessage;
+        //        objContactInfo.ReturnStatus = transaction.ReturnStatus;
+        //        objContactInfo.ValidationErrors = transaction.ValidationErrors;
+        //        var badResponse = Request.CreateResponse<ContactInfo>(HttpStatusCode.BadRequest, objContactInfo);
+        //        return badResponse;
+        //    }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST: api/ContactsAPI
-        [ResponseType(typeof(contact))]
-        public IHttpActionResult Postcontact(contact contact)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.contacts.Add(contact);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = contact.ID }, contact);
-        }
-
-        // DELETE: api/ContactsAPI/5
-        [ResponseType(typeof(contact))]
-        public IHttpActionResult Deletecontact(int id)
-        {
-            contact contact = db.contacts.Find(id);
-            if (contact == null)
-            {
-                return NotFound();
-            }
-
-            db.contacts.Remove(contact);
-            db.SaveChanges();
-
-            return Ok(contact);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool contactExists(int id)
-        {
-            return db.contacts.Count(e => e.ID == id) > 0;
-        }
+        //    var response = Request.CreateResponse<ContactInfo>(HttpStatusCode.OK, objContactInfo);
+        //    return response;
+        //}
+        
     }
 }

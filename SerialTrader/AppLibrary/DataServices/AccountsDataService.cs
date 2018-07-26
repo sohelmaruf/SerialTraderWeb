@@ -30,7 +30,7 @@ namespace AppLibrary.DataServices
         /// <param name="Account"></param>
         public void UpdateAccount(taccount account)
         {
-            //account.DateUpdated = DateTime.Now;
+            dbConnection.SaveChanges();
         }
 
         /// <summary>

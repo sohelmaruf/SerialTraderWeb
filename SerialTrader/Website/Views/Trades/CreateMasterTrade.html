@@ -1,5 +1,5 @@
 ﻿
-<div ng-controller="contactController" ng-init="initializeController()">
+<div ng-controller="createMasterTradeController" ng-init="initializeController()">
 
   <br />
    
@@ -10,66 +10,125 @@
             <table cellspacing="0" cellpadding="0" border="0">
                 <tr>
                     <td style="vertical-align:top">
-                        <h2 class="page-title">MASTER TRADE UPDATE</h2>
+                        <h2 class="page-title">MANAGE MASTER TRADES</h2>
                     </td>
                     <td>
 
                         <form class="form-horizontal" role="form">
                             <div class="form-group">
-                                <label for="firstName" class="col-sm-3 control-label">Name</label>
+                                <label for="TRADETYPE" class="col-sm-3 control-label" style="white-space:nowrap">Trade Type</label>
                                 <div class="col-sm-9">
-                                    <input ng-model="FullName" type="text" id="FullName" placeholder="Full Name" class="form-control">
-                                    <span class="help-block">Last Name, First Name, eg.: Smith, Harry</span>
+                                    <select ng-model="TRADETYPE" id="selectbasic" name="selectbasic" class="form-control input-md">
+                                        <option selected="selected">BASIC</option>
+                                        <option>STANDARD</option>
+                                        <option>ENTERPRISE</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="email" class="col-sm-3 control-label">Email</label>
+                                <label for="EXCHANGE" class="col-sm-3 control-label" style="white-space:nowrap">Exchange</label>
                                 <div class="col-sm-9">
-                                    <input ng-model="Email" type="email" id="Email" placeholder="Email" class="form-control" ng-class="{'validation-error': EmailAddressInputError}">
+                                    <select ng-model="EXCHANGE" id="selectbasic" name="selectbasic" class="form-control input-md">
+                                        <option selected="selected">BASIC</option>
+                                        <option>STANDARD</option>
+                                        <option>ENTERPRISE</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="firstName" class="col-sm-3 control-label">Phone</label>
+                                <label for="TRADINGPAIR" class="col-sm-3 control-label" style="white-space:nowrap">Market</label>
                                 <div class="col-sm-9">
-                                    <input ng-model="OfficePhone" type="text" id="OfficePhone" placeholder="Phone Number" class="form-control" autofocus>
+                                    <select ng-model="TRADINGPAIR" id="selectbasic" name="selectbasic" class="form-control input-md">
+                                        <option selected="selected">BASIC</option>
+                                        <option>STANDARD</option>
+                                        <option>ENTERPRISE</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="BUYQUANTITY" class="col-sm-3 control-label" style="white-space:nowrap">Buy Quantity</label>
+                                <div class="col-sm-9">
+                                    <div ng-bind="BUYQUANTITY" ng-show="DisplayMode"></div>
+                                    <div ng-show="EditMode"><input ng-model="BUYQUANTITY" type="text" style="width: 300px" /></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="BUYPRICE" class="col-sm-3 control-label" style="white-space:nowrap">Buy Price</label>
+                                <div class="col-sm-9">
+                                    <div ng-bind="BUYPRICE" ng-show="DisplayMode"></div>
+                                    <div ng-show="EditMode"><input ng-model="BUYPRICE" type="text" style="width: 300px" /></div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="firstName" class="col-sm-3 control-label">Organization</label>
+                                <label for="BUYTOTAL" class="col-sm-3 control-label" style="white-space:nowrap">Buy Total</label>
                                 <div class="col-sm-9">
-                                    <input ng-model="Organization" type="text" id="Organization" placeholder="Organization Name" class="form-control" autofocus>
+                                    <div ng-bind="BUYTOTAL" ng-show="DisplayMode"></div>
+                                    <div ng-show="EditMode"><input ng-model="BUYTOTAL" type="text" style="width: 300px" /></div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="birthDate" class="col-sm-3 control-label">Address</label>
+                                <label for="SELLQUANTITY" class="col-sm-3 control-label" style="white-space:nowrap">Sell Quantity</label>
                                 <div class="col-sm-9">
-                                    <input ng-model="Address" type="text" id="Address" placeholder="Address" class="form-control">
+                                    <div ng-bind="SELLQUANTITY" ng-show="DisplayMode"></div>
+                                    <div ng-show="EditMode"><input ng-model="SELLQUANTITY" type="text" style="width: 300px" /></div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="birthDate" class="col-sm-3 control-label">Comments</label>
+                                <label for="SELLPRICE" class="col-sm-3 control-label" style="white-space:nowrap">Sell Price</label>
                                 <div class="col-sm-9">
-                                    <textarea ng-model="Comments" name="Comments" cols="40" rows="4" class="form-control" style="width:550px; height:100px"></textarea>
+                                    <div ng-bind="SELLPRICE" ng-show="DisplayMode"></div>
+                                    <div ng-show="EditMode"><input ng-model="SELLPRICE" type="text" style="width: 300px" /></div>
                                 </div>
                             </div>
 
-                            <!-- /.form-group -->
                             <div class="form-group">
-                                <div class="col-sm-9 col-sm-offset-3">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input ng-model="AllowNewsLetter" type="checkbox">Send me occasional Emails and Newsletters</a>
-                                        </label>
-                                    </div>
+                                <label for="SELLTOTAL" class="col-sm-3 control-label" style="white-space:nowrap">Sell Total</label>
+                                <div class="col-sm-9">
+                                    <div ng-bind="SELLTOTAL" ng-show="DisplayMode"></div>
+                                    <div ng-show="EditMode"><input ng-model="SELLTOTAL" type="text" style="width: 300px" /></div>
                                 </div>
-                            </div> <!-- /.form-group -->
+                            </div>
+
                             <div class="form-group">
-                                <div class="col-sm-9 col-sm-offset-3">
-                                    <button type="submit" class="btn btn-primary btn-block" ng-click="registerContact()">Save</button>
+                                <label for="RUNFREQUENCY" class="col-sm-3 control-label" style="white-space:nowrap">Frequency</label>
+                                <div class="col-sm-9">
+                                    <div ng-bind="RUNFREQUENCY" ng-show="DisplayMode"></div>
+                                    <div ng-show="EditMode"><input ng-model="RUNFREQUENCY" type="text" style="width: 300px" /></div>
                                 </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="RUNCOUNT" class="col-sm-3 control-label" style="white-space:nowrap">Run Count</label>
+                                <div class="col-sm-9">
+                                    <div ng-bind="RUNCOUNT" ng-show="DisplayMode"></div>
+                                    <div ng-show="EditMode"><input ng-model="RUNCOUNT" type="text" style="width: 300px" /></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ACTIVE" class="col-sm-3 control-label" style="white-space:nowrap">Enabled</label>
+                                <div class="col-sm-9">
+                                    <select ng-model="ACTIVE" id="selectbasic" name="selectbasic" class="form-control input-md">
+                                        <option>TRUE</option>
+                                        <option>FALSE</option>
+                                    </select>
+                                </div>
+                            </div>
+                        
+                            <div class="form-group">
+                                <br />
+                                <table cellspacing="0" cellpadding="0" border="0">
+                                    <tr>
+                                        <td style="padding-left:100px;"><button type="submit" style="width:80px" class="btn btn-primary btn-block" ng-click="createMasterTrade()">Create</button></td>
+                                        <td style="padding-left:15px; "><button type="submit" style="width:80px" class="btn btn-primary btn-block" ng-click="editMasterTrade()">Edit</button></td>
+                                        <td style="padding-left:15px; "><button type="submit" style="width:80px" class="btn btn-primary btn-block" ng-click="updateMasterTrade()">Update</button></td>
+                                        <td style="padding-left:15px; "><button type="submit" style="width:80px" class="btn btn-primary btn-block" ng-click="cancelChanges()">Cancel</button></td>
+                                    </tr>
+                                </table>
                             </div>
                         </form> <!-- /form -->
                     </td>

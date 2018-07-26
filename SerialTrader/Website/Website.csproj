@@ -249,8 +249,10 @@
     <Compile Include="Controllers\AdminAPIController.cs" />
     <Compile Include="Controllers\ApplicationMenusAPIController.cs" />
     <Compile Include="Controllers\ContactsAPIController.cs" />
+    <Compile Include="Controllers\ExchangesApiController.cs" />
     <Compile Include="Controllers\MainApiController.cs" />
     <Compile Include="Controllers\AccountsApiController.cs" />
+    <Compile Include="Controllers\MarketsApiController.cs" />
     <Compile Include="Controllers\MasterTradesApiController.cs" />
     <Compile Include="Controllers\TradesApiController.cs" />
     <Compile Include="Filters\ValidateModelStateFilter.cs" />

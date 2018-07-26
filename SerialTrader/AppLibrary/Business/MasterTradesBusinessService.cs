@@ -62,22 +62,22 @@ namespace AppLibrary.Business
             {
 
                 masterTradesDataService.CreateSession();
-                masterTradesBusinessRules.ValidateMasterTrade(masterTrade, masterTradesDataService);
+               // masterTradesBusinessRules.ValidateMasterTrade(masterTrade, masterTradesDataService);
 
-                if (masterTradesBusinessRules.ValidationStatus == true)
-                {
-                    masterTradesDataService.BeginTransaction();
-                    masterTradesDataService.CreateMasterTrade(masterTrade);
-                    masterTradesDataService.CommitTransaction(true);
-                    transaction.ReturnStatus = true;
-                    transaction.ReturnMessage.Add("MasterTrade successfully created.");
-                }
-                else
-                {
-                    transaction.ReturnStatus = masterTradesBusinessRules.ValidationStatus;
-                    transaction.ReturnMessage = masterTradesBusinessRules.ValidationMessage;
-                    transaction.ValidationErrors = masterTradesBusinessRules.ValidationErrors;
-                }
+                //if (masterTradesBusinessRules.ValidationStatus == true)
+                //{
+                //    masterTradesDataService.BeginTransaction();
+                //    masterTradesDataService.CreateMasterTrade(masterTrade);
+                //    masterTradesDataService.CommitTransaction(true);
+                //    transaction.ReturnStatus = true;
+                //    transaction.ReturnMessage.Add("MasterTrade successfully created.");
+                //}
+                //else
+                //{
+                //    transaction.ReturnStatus = masterTradesBusinessRules.ValidationStatus;
+                //    transaction.ReturnMessage = masterTradesBusinessRules.ValidationMessage;
+                //    transaction.ValidationErrors = masterTradesBusinessRules.ValidationErrors;
+                //}
 
             }
             catch (Exception ex)

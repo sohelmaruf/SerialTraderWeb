@@ -71,6 +71,8 @@
     <Compile Include="Business\ContactBusinessService.cs" />
     <Compile Include="Business\AccountsBusinessRules.cs" />
     <Compile Include="Business\AccountsBusinessService.cs" />
+    <Compile Include="Business\ExchangeBusinessService.cs" />
+    <Compile Include="Business\MarketBusinessService.cs" />
     <Compile Include="Business\MasterTradesBusinessRules.cs" />
     <Compile Include="Business\MasterTradesBusinessService.cs" />
     <Compile Include="Business\TradesBusinessRules.cs" />
@@ -92,6 +94,8 @@
     <Compile Include="DataServices\ContactDataService.cs" />
     <Compile Include="DataServices\EntityFrameworkDataService.cs" />
     <Compile Include="DataServices\AccountsDataService.cs" />
+    <Compile Include="DataServices\ExchangeDataService.cs" />
+    <Compile Include="DataServices\MarketDataService.cs" />
     <Compile Include="DataServices\MasterTradesDataService.cs" />
     <Compile Include="DataServices\TradesDataService.cs" />
     <Compile Include="DataServices\UserDataService.cs" />
@@ -99,6 +103,8 @@
     <Compile Include="Entity\ApplicationInfo.cs" />
     <Compile Include="Entity\ContactInfo.cs" />
     <Compile Include="Entity\AccountInfo.cs" />
+    <Compile Include="Entity\ExchangeInfo.cs" />
+    <Compile Include="Entity\MarketInfo.cs" />
     <Compile Include="Entity\MasterTradeInfo.cs" />
     <Compile Include="Entity\RegisterInfo.cs" />
     <Compile Include="Entity\TransactionalInfo.cs" />
@@ -109,6 +115,8 @@
     <Compile Include="Interfaces\IAdminDataService.cs" />
     <Compile Include="Interfaces\IApplicationDataService.cs" />
     <Compile Include="Interfaces\IContactDataService.cs" />
+    <Compile Include="Interfaces\IExchangeDataService.cs" />
+    <Compile Include="Interfaces\IMarketDataService.cs" />
     <Compile Include="Interfaces\IMasterTradesDataService.cs" />
     <Compile Include="Interfaces\Interfaces.cs" />
     <Compile Include="Interfaces\ITradesDataService.cs" />

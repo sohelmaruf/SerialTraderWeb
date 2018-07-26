@@ -2,65 +2,180 @@
 
 define(['application-configuration', 'contactsService', 'alertsService'], function (app) {
 
-    app.register.controller('contactController', ['$scope', '$rootScope', 'contactsService', 'alertsService',
-        function ($scope, $rootScope, contactsService, alertsService) {
-
-            $rootScope.closeAlert = alertsService.closeAlert;
-            $rootScope.applicationModule = "Main";
-            $rootScope.alerts = [];
+    app.register.controller('createContactController', ['$scope', '$rootScope', '$routeParams', 'contactsService', 'alertsService',
+        function ($scope, $rootScope, $routeParams, contactsService, alertsService) {
 
             $scope.initializeController = function () {
 
-                $scope.FullName = "";
-                $scope.Email = "";
-                $scope.OfficePhone = "";
-                $scope.Organization = "";
-                $scope.Address = "";
-                $scope.Comments = "";
-                $scope.AllowNewsLetter = "";
+                var contactID = ($routeParams.id || "");
+
+                $rootScope.applicationModule = "Contacts";
+                $rootScope.alerts = [];
+
+                $scope.ContactID = contactID;
+
+                if (contactID == "") {
+
+                    $scope.FirstName = "";
+                    $scope.LastName = "";
+                    $scope.OfficePhone = "";
+                    $scope.Address = "";
+                    $scope.Email = "";
+
+                    $scope.setOriginalValues();
+
+                    $scope.EditMode = true;
+                    $scope.DisplayMode = false;
+
+                    $scope.ShowCreateButton = true;
+                    $scope.ShowEditButton = false;
+                    $scope.ShowCancelButton = false;
+                    $scope.ShowUpdateButton = false;
+
+                }
+                else {
+                    var getContact = new Object();
+                    getContact.ContactID = contactID;
+                    contactsService.getContact(getContact, $scope.getContactCompleted, $scope.getContactError);
+
+                }
+
             }
 
-            $scope.registerContact = function () {
-                var contact = $scope.createContact();
-                contactsService.createContact(contact, $scope.registerContactCompleted, $scope.registerContactError);
+            $scope.getContactCompleted = function (response) {
+
+                $scope.EditMode = false;
+                $scope.DisplayMode = true;
+                $scope.ShowCreateButton = false;
+                $scope.ShowEditButton = true;
+                $scope.ShowCancelButton = false;
+                $scope.ShowUpdateButton = false;
+
+
+                $scope.FirstName = response.Contact.FirstName;
+                $scope.LastName = response.Contact.LastName;
+                $scope.OfficePhone = response.Contact.OfficePhone;
+                $scope.Address = response.Contact.Address;
+                $scope.Email = response.Contact.Email;
+
+                $scope.setOriginalValues();
             }
 
-            $scope.registerContactCompleted = function (response) {
-
-                $scope.FullName = "";
-                $scope.Email = "";
-                $scope.OfficePhone = "";
-                $scope.Organization = "";
-                $scope.Address = "";
-                $scope.Comments = "";
-                $scope.AllowNewsLetter = "";
-
-                alertsService.RenderSuccessMessage("Your message has been sent to WaterCons, a representative will contact you soon.");
-                //window.location = "/index.html#/Main/Contact";
+            $scope.getContactError = function (response) {
+                alertsService.RenderErrorMessage(response.ReturnMessage);
             }
 
-            $scope.registerContactError = function (response) {
+            $scope.clearValidationErrors = function () {
 
+                $scope.EmailAddressInputError = false;
+            }
+
+            $scope.setOriginalValues = function () {
+
+
+                $scope.OriginalFirstName = $scope.FirstName;
+                $scope.OriginalLastName = $scope.LastName;
+                $scope.OriginalOfficePhone = $scope.OfficePhone;
+                $scope.OriginalAddress = $scope.Address;
+                $scope.OriginalEmail = $scope.Email;
+            }
+
+            $scope.resetValues = function () {
+
+                $scope.FirstName = $scope.OriginalFirstName;
+                $scope.LastName = $scope.OriginalLastName;
+                $scope.OfficePhone = $scope.OriginalOfficePhone;
+                $scope.Address = $scope.OriginalAddress;
+                $scope.Email = $scope.OriginalEmail;
+
+            }
+
+            $scope.editContact = function () {
+                $scope.ShowCreateButton = false;
+                $scope.ShowEditButton = false;
+                $scope.ShowCancelButton = true;
+                $scope.ShowUpdateButton = true;
+                $scope.EditMode = true;
+                $scope.DisplayMode = false;
+            }
+
+            $scope.cancelChanges = function () {
+
+                $scope.ShowCreateButton = false;
+                $scope.ShowEditButton = true;
+                $scope.ShowCancelButton = false;
+                $scope.ShowUpdateButton = false;
+                $scope.EditMode = false;
+                $scope.DisplayMode = true;
+                $rootScope.alerts = [];
+
+                $scope.resetValues();
+            }
+
+            $scope.createContact = function () {
+
+                var contact = $scope.createContactObject();
+                contactsService.createContact(contact, $scope.createContactCompleted, $scope.createContactError);
+            }
+
+            $scope.updateContact = function () {
+                var contact = $scope.createContactObject();
+                contact.ContactID = $scope.ContactID;
+                contactsService.updateContact(contact, $scope.updateContactCompleted, $scope.updateContactError);
+            }
+
+            $scope.createContactCompleted = function (response, status) {
+
+                $scope.EditMode = false;
+                $scope.DisplayMode = true;
+                $scope.ShowCreateButton = false;
+                $scope.ShowEditButton = true;
+                $scope.ShowCancelButton = false;
+
+                $scope.ContactID = response.Contact.ContactID;
+                alertsService.RenderSuccessMessage(response.ReturnMessage);
+
+                $scope.setOriginalValues();
+            }
+
+            $scope.createContactError = function (response) {
                 alertsService.RenderErrorMessage(response.ReturnMessage);
                 $scope.clearValidationErrors();
                 alertsService.SetValidationErrors($scope, response.ValidationErrors);
             }
 
-            $scope.clearValidationErrors = function () {
-                $scope.EmailAddressInputError = false;
+            $scope.updateContactCompleted = function (response, status) {
+
+                $scope.EditMode = false;
+                $scope.DisplayMode = true;
+                $scope.ShowCreateButton = false;
+                $scope.ShowEditButton = true;
+                $scope.ShowCancelButton = false;
+                $scope.ShowUpdateButton = false;
+
+                alertsService.RenderSuccessMessage(response.ReturnMessage);
+
+                $scope.setOriginalValues();
             }
 
-            $scope.createContact = function () {
+            $scope.updateContactError = function (response) {
+                alertsService.RenderErrorMessage(response.ReturnMessage);
+                $scope.clearValidationErrors();
+                alertsService.SetValidationErrors($scope, response.ValidationErrors);
+            }
+
+
+            $scope.createContactObject = function () {
 
                 var contact = new Object();
 
-                contact.FullName = $scope.FullName;
-                contact.Email = $scope.Email;
+
+                contact.ID = $scope.ContactID;
+                contact.FirstName = $scope.FirstName;
+                contact.LastName = $scope.LastName;
                 contact.OfficePhone = $scope.OfficePhone;
-                contact.Organization = $scope.Organization;
                 contact.Address = $scope.Address;
-                contact.Comments = $scope.Comments;
-                contact.AllowNewsLetter = $scope.AllowNewsLetter;
+                contact.Email = $scope.Email;
 
                 return contact;
             }

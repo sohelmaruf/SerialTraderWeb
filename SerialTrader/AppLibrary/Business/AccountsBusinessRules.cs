@@ -37,7 +37,8 @@ namespace AppLibrary.Business
         {
             accountsDataService = dataService;
             InitializeValidationRules(account);
-           
+            ValidateEmailAddress("EMAILADDRESS", "Email Address");
+
             //ValidateRequired("ShipName", "Ship To Name");
             //ValidateRequired("ShipCity", "Ship To City");
             //ValidateRequired("ShipRegion", "Ship To Region");

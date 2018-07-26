@@ -109,22 +109,22 @@ namespace AppLibrary.Business
 
                 objContact = ContactsDataService.GetContact(contactID);
 
-                objContact.FirstName = WebUtils.UppercaseFirstLetter(firstName.Trim());
-                objContact.LastName = WebUtils.UppercaseFirstLetter(lastName.Trim());
-                objContact.Email = email.Trim();
-                objContact.Address = address.Trim();
-                objContact.HomePhone = homePhone.Trim();
-                objContact.OfficePhone = officePhone.Trim();
-                objContact.Street = street.Trim();
-                objContact.City = city.Trim();
-                objContact.Zipcode = zipCode.Trim();
-                objContact.State = state.Trim();
-                objContact.Country = country.Trim();
-                objContact.Organization = organization.Trim();
-                objContact.Designation = designation.Trim();
-                objContact.Photo = photo.Trim();
+                objContact.FirstName = WebUtils.UppercaseFirstLetter(firstName);
+                objContact.LastName = WebUtils.UppercaseFirstLetter(lastName);
+                objContact.Email = email;
+                objContact.Address = address;
+                objContact.HomePhone = homePhone;
+                objContact.OfficePhone = officePhone;
+                objContact.Street = street;
+                objContact.City = city;
+                objContact.Zipcode = zipCode;
+                objContact.State = state;
+                objContact.Country = country;
+                objContact.Organization = organization;
+                objContact.Designation = designation;
+                objContact.Photo = photo;
                 objContact.AllowNewsLetter = allowNewsLetter;
-                objContact.Comments = Comment.Trim();
+                objContact.Comments = Comment;
 
 
                 ContactsDataService.BeginTransaction();

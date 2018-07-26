@@ -55,33 +55,38 @@ namespace Website.Controllers
             return response;
         }
 
+
         [Route("GetMasterTrade")]
+        [HttpGet]
         [WebApiAuthenication]
         [ValidateModelState]
-        [HttpPost]
-        public HttpResponseMessage GetMasterTrade(HttpRequestMessage request, [FromBody] MasterTradeInfo objMasterTradeInfo)
+        public HttpResponseMessage GetMasterTrade(int masterID)
         {
+            MasterTradeInfo objMasterTradeInfo = new MasterTradeInfo();
             TransactionalInformation transaction = new TransactionalInformation();
             MasterTradesBusinessService masterTradesBusinessService;
+
             objMasterTradeInfo.IsAuthenicated = true;
-
             masterTradesBusinessService = new MasterTradesBusinessService(masterTradesDataService);
-            tmastertrade masterTrade = masterTradesBusinessService.GetMasterTrade(objMasterTradeInfo.MASTERID, out transaction);
 
-            if (transaction.ReturnStatus == false)
+            tmastertrade mTrade = masterTradesBusinessService.GetMasterTrade(masterID, out transaction);
+
+            objMasterTradeInfo.MasterTrade = mTrade;
+            objMasterTradeInfo.IsAuthenicated = true;
+            objMasterTradeInfo.ReturnStatus = transaction.ReturnStatus;
+            objMasterTradeInfo.ReturnMessage = transaction.ReturnMessage;
+
+            if (transaction.ReturnStatus == true)
             {
-                objMasterTradeInfo.ReturnMessage = transaction.ReturnMessage;
-                objMasterTradeInfo.ReturnStatus = transaction.ReturnStatus;
-                objMasterTradeInfo.ValidationErrors = transaction.ValidationErrors;
-                var badResponse = Request.CreateResponse<MasterTradeInfo>(HttpStatusCode.BadRequest, objMasterTradeInfo);
-                return badResponse;
+                var response = Request.CreateResponse<MasterTradeInfo>(HttpStatusCode.OK, objMasterTradeInfo);
+                return response;
             }
 
-            var response = Request.CreateResponse<MasterTradeInfo>(HttpStatusCode.OK, objMasterTradeInfo);
-            return response;
+            var badResponse = Request.CreateResponse<MasterTradeInfo>(HttpStatusCode.BadRequest, objMasterTradeInfo);
+            return badResponse;
         }
 
-
+        
         [Route("GetMasterTrades")]
         [HttpPost]
         [WebApiAuthenication]
@@ -129,7 +134,6 @@ namespace Website.Controllers
         }
 
         [Route("CreateMasterTrade")]
-        [WebApiAuthenication]
         [ValidateModelState]
         [HttpPost]
         public HttpResponseMessage CreateMasterTrade(HttpRequestMessage request, [FromBody] MasterTradeInfo objMasterTradeInfo)

@@ -54,34 +54,39 @@ namespace Website.Controllers
             var response = Request.CreateResponse<AccountInfo>(HttpStatusCode.OK, objAccountInfo);
             return response;
         }
-        
+
         [Route("GetAccount")]
+        [HttpGet]
         [WebApiAuthenication]
         [ValidateModelState]
-        [HttpPost]
-        public HttpResponseMessage GetAccount(HttpRequestMessage request, [FromBody] AccountInfo objAccountInfo)
+        public HttpResponseMessage GetAccount(int accountID)
         {
+            AccountInfo objAccountInfo = new AccountInfo();
             TransactionalInformation transaction = new TransactionalInformation();
             AccountsBusinessService accountsBusinessService;
+
             objAccountInfo.IsAuthenicated = true;
 
             accountsBusinessService = new AccountsBusinessService(accountsDataService);
-            taccount account = accountsBusinessService.GetAccount(objAccountInfo.AccountID, out transaction);
 
-            if (transaction.ReturnStatus == false)
+            taccount account = accountsBusinessService.GetAccount(accountID, out transaction);
+
+            objAccountInfo.Account = account;
+            objAccountInfo.IsAuthenicated = true;
+            objAccountInfo.ReturnStatus = transaction.ReturnStatus;
+            objAccountInfo.ReturnMessage = transaction.ReturnMessage;
+
+            if (transaction.ReturnStatus == true)
             {
-                objAccountInfo.ReturnMessage = transaction.ReturnMessage;
-                objAccountInfo.ReturnStatus = transaction.ReturnStatus;
-                objAccountInfo.ValidationErrors = transaction.ValidationErrors;
-                var badResponse = Request.CreateResponse<AccountInfo>(HttpStatusCode.BadRequest, objAccountInfo);
-                return badResponse;
+                var response = Request.CreateResponse<AccountInfo>(HttpStatusCode.OK, objAccountInfo);
+                return response;
             }
 
-            var response = Request.CreateResponse<AccountInfo>(HttpStatusCode.OK, objAccountInfo);
-            return response;            
+            var badResponse = Request.CreateResponse<AccountInfo>(HttpStatusCode.BadRequest, objAccountInfo);
+            return badResponse;
         }
 
-
+        
         [Route("GetAccounts")]
         [HttpPost]
         [WebApiAuthenication]

@@ -23,7 +23,9 @@ namespace Website.Controllers
     {
      
         ITradesDataService tradesDataService;
-    
+        IExchangeDataService exchangesDataService;
+        IMarketDataService marketsDataService;
+
         /// <summary>
         /// Constructor with Dependency Injection using Ninject
         /// </summary>
@@ -31,8 +33,11 @@ namespace Website.Controllers
         public TradesApiController()
         {
             tradesDataService = new TradesDataService();
+            exchangesDataService = new ExchangeDataService();
+            marketsDataService = new MarketDataService();
         }
-        
+
+
         [Route("InitializeTrade")]
         [WebApiAuthenication]
         [ValidateModelState]
@@ -40,48 +45,71 @@ namespace Website.Controllers
         public HttpResponseMessage InitializeTrade(HttpRequestMessage request, [FromBody] TradeInfo objTradeInfo)
         {
             TransactionalInformation transaction = new TransactionalInformation();
+            TradesBusinessService tradesBusinessService = new TradesBusinessService(tradesDataService);
+            ExchangeBusinessService exchangesBusinessService = new ExchangeBusinessService(exchangesDataService);
+            MarketBusinessService marketsBusinessService = new MarketBusinessService(marketsDataService);
+
             objTradeInfo.IsAuthenicated = true;
 
-            if (transaction.ReturnStatus == false)
-            {
-                objTradeInfo.ReturnMessage = transaction.ReturnMessage;
-                objTradeInfo.ReturnStatus = transaction.ReturnStatus;
-                objTradeInfo.ValidationErrors = transaction.ValidationErrors;
-                var badResponse = Request.CreateResponse<TradeInfo>(HttpStatusCode.BadRequest, objTradeInfo);
-                return badResponse;
-            }
-
-            var response = Request.CreateResponse<TradeInfo>(HttpStatusCode.OK, objTradeInfo);
-            return response;
-        }
-        
-        [Route("GetTrade")]
-        [WebApiAuthenication]
-        [ValidateModelState]
-        [HttpPost]
-        public HttpResponseMessage GetTrade(HttpRequestMessage request, [FromBody] TradeInfo objTradeInfo)
-        {
-            TransactionalInformation transaction = new TransactionalInformation();
-            TradesBusinessService tradesBusinessService;
-            objTradeInfo.IsAuthenicated = true;
-
-            tradesBusinessService = new TradesBusinessService(tradesDataService);
             ttrade trade = tradesBusinessService.GetTrade(objTradeInfo.TID, out transaction);
 
-            if (transaction.ReturnStatus == false)
+            List<texchanx> exchanges = exchangesBusinessService.GetExchanges(out transaction);
+            List<tmarket> markets = marketsBusinessService.GetMarkets(out transaction);
+
+            objTradeInfo.Trade = trade;
+            objTradeInfo.Exchanges = exchanges;
+            objTradeInfo.Markets = markets;
+            objTradeInfo.IsAuthenicated = true;
+            objTradeInfo.ReturnStatus = transaction.ReturnStatus;
+            objTradeInfo.ReturnMessage = transaction.ReturnMessage;
+
+            if (transaction.ReturnStatus == true)
             {
-                objTradeInfo.ReturnMessage = transaction.ReturnMessage;
-                objTradeInfo.ReturnStatus = transaction.ReturnStatus;
-                objTradeInfo.ValidationErrors = transaction.ValidationErrors;
-                var badResponse = Request.CreateResponse<TradeInfo>(HttpStatusCode.BadRequest, objTradeInfo);
-                return badResponse;
+                var response = Request.CreateResponse<TradeInfo>(HttpStatusCode.OK, objTradeInfo);
+                return response;
             }
 
-            var response = Request.CreateResponse<TradeInfo>(HttpStatusCode.OK, objTradeInfo);
-            return response;            
+            var badResponse = Request.CreateResponse<TradeInfo>(HttpStatusCode.BadRequest, objTradeInfo);
+            return badResponse;
         }
 
+        [Route("GetTrade")]
+        [HttpGet]
+        [WebApiAuthenication]
+        [ValidateModelState]
+        public HttpResponseMessage GetTrade(int tID)
+        {
+            TradeInfo objTradeInfo = new TradeInfo();
+            TransactionalInformation transaction = new TransactionalInformation();
+            TradesBusinessService tradesBusinessService = new TradesBusinessService(tradesDataService);
+            ExchangeBusinessService exchangesBusinessService = new ExchangeBusinessService(exchangesDataService);
+            MarketBusinessService marketsBusinessService = new MarketBusinessService(marketsDataService);
 
+            objTradeInfo.IsAuthenicated = true;
+            
+            ttrade trade = tradesBusinessService.GetTrade(tID, out transaction);
+
+            List<texchanx> exchanges = exchangesBusinessService.GetExchanges(out transaction);
+            List<tmarket> markets = marketsBusinessService.GetMarkets(out transaction);
+
+            objTradeInfo.Trade = trade;
+            objTradeInfo.Exchanges = exchanges;
+            objTradeInfo.Markets = markets;
+            objTradeInfo.IsAuthenicated = true;
+            objTradeInfo.ReturnStatus = transaction.ReturnStatus;
+            objTradeInfo.ReturnMessage = transaction.ReturnMessage;
+
+            if (transaction.ReturnStatus == true)
+            {
+                var response = Request.CreateResponse<TradeInfo>(HttpStatusCode.OK, objTradeInfo);
+                return response;
+            }
+
+            var badResponse = Request.CreateResponse<TradeInfo>(HttpStatusCode.BadRequest, objTradeInfo);
+            return badResponse;
+        }
+
+        
         [Route("GetTrades")]
         [HttpPost]
         [WebApiAuthenication]
@@ -110,7 +138,7 @@ namespace Website.Controllers
             tradesBusinessService = new TradesBusinessService(tradesDataService);
 
             List<ttrade> trades = tradesBusinessService.TradeInquiry(objTradeInfo.ORDERID, objTradeInfo.ORDERSTATUS, paging, out transaction);
-
+            
             objTradeInfo.Trades = trades;
             objTradeInfo.ReturnStatus = transaction.ReturnStatus;
             objTradeInfo.ReturnMessage = transaction.ReturnMessage;

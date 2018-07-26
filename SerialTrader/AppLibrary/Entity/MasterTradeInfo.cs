@@ -32,5 +32,7 @@ namespace AppLibrary.Entity
 
         public tmastertrade MasterTrade = new tmastertrade();
         public List<tmastertrade> MasterTrades = new List<tmastertrade>();
+        public List<texchanx> Exchanges = new List<texchanx>();
+        public List<tmarket> Markets = new List<tmarket>();
     }
 }

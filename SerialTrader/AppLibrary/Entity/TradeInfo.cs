@@ -32,5 +32,7 @@ namespace AppLibrary.Entity
 
         public ttrade Trade = new ttrade();
         public List<ttrade> Trades = new List<ttrade>();
+        public List<texchanx> Exchanges = new List<texchanx>();
+        public List<tmarket> Markets = new List<tmarket>();
     }
 }

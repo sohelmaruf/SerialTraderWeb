@@ -10,10 +10,11 @@ using AppLibrary.Model;
 using AppLibrary.Interfaces;
 using AppLibrary.Common;
 using AppLibrary.Entity;
+using AppLibrary.DataServices;
 
 namespace AppLibrary.Business
 {
-    public class AccountsBusinessService
+    public class AccountsBusinessService: EntityFrameworkDataService
     {
         IAccountsDataService _accountsDataService;
 
@@ -96,18 +97,23 @@ namespace AppLibrary.Business
 
             transaction = new TransactionalInformation();
             AccountsBusinessRules accountsBusinessRules = new AccountsBusinessRules();
-            taccount account = new taccount();
+            taccount account = dbConnection.taccounts.Where(o => o.ACCOUNTID == AccountID).FirstOrDefault();
+            //taccount account = new taccount();
 
             try
             {
-                accountsDataService.CreateSession();
+                //accountsDataService.CreateSession();
 
-                account = accountsDataService.GetAccount(AccountID);
+                //account = accountsDataService.GetAccount(AccountID);
                 account.FIRSTNAME = FirstName;
                 account.LASTNAME = LastName;
                 account.EMAILADDRESS = EmailAddress;
-                account.ISENABLED = IsEnabled;
-                account.POSTTOSLACK = PostToSlack;
+                //account.ISENABLED = IsEnabled;
+                //account.POSTTOSLACK = PostToSlack;
+
+                account.ISENABLED = "true";
+                account.POSTTOSLACK = "true";
+
                 account.SLACKBOTCHANNEL = SlackBotChannel;
                 account.PASSWORD = Password;
                 account.ROLE = Role;
@@ -117,7 +123,9 @@ namespace AppLibrary.Business
                 if (accountsBusinessRules.ValidationStatus == true)
                 {
                     accountsDataService.BeginTransaction();
-                    accountsDataService.UpdateAccount(account);
+
+                    dbConnection.SaveChanges();
+                    //accountsDataService.UpdateAccount(account);
                     accountsDataService.CommitTransaction(true);
                     transaction.ReturnStatus = true;
                     transaction.ReturnMessage.Add("Account successfully updated at " + DateTime.Now.ToShortDateString());

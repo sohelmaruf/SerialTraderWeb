@@ -26,8 +26,8 @@
             ajaxService.AjaxPost(account, "/api/accounts/GetAccounts", successFunction, errorFunction);
         };
 
-        this.getAccount = function (account, successFunction, errorFunction) {
-            ajaxService.AjaxPost(account, "/api/accounts/GetAccount", successFunction, errorFunction);
+        this.getAccount = function (accountID, successFunction, errorFunction) {
+            ajaxService.AjaxGetWithData(accountID, "/api/accounts/GetAccount", successFunction, errorFunction);
         };
 
         this.updateAccount = function (account, successFunction, errorFunction) {

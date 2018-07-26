@@ -1,89 +1,95 @@
 ﻿
-<div ng-controller="contactController" ng-init="initializeController()">
+<div ng-controller="createContactController" ng-init="initializeController()">
+    <br />
 
-<br />
-  <main class="site-main page-main">
-    <div class="container">
-      <div class="row">
-        <section class="page col-sm-9">
-            <table cellspacing="0" cellpadding="0" border="0">
-                <tr>
-                    <td style="vertical-align:top">
-                        <h2 class="page-title">CONTACT UPDATE</h2>
-                    </td>
-                    <td>
+    <main class="site-main page-main">
+        <div class="container">
+            <div class="row">
+                <section class="page col-sm-9">
+                    <table cellspacing="0" cellpadding="0" border="0">
+                        <tr>
+                            <td style="vertical-align:top">
+                                <h2 class="page-title">MANAGE CONTACTS</h2>
+                            </td>
+                            <td>
 
-                        <form class="form-horizontal" role="form">
-                            <div class="form-group">
-                                <label for="firstName" class="col-sm-3 control-label">Name</label>
-                                <div class="col-sm-9">
-                                    <input ng-model="FullName" type="text" id="FullName" placeholder="Full Name" class="form-control">
-                                    <span class="help-block">Last Name, First Name, eg.: Smith, Harry</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="email" class="col-sm-3 control-label">Email</label>
-                                <div class="col-sm-9">
-                                    <input ng-model="Email" type="email" id="Email" placeholder="Email" class="form-control" ng-class="{'validation-error': EmailAddressInputError}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="firstName" class="col-sm-3 control-label">Phone</label>
-                                <div class="col-sm-9">
-                                    <input ng-model="OfficePhone" type="text" id="OfficePhone" placeholder="Phone Number" class="form-control" autofocus>
-                                </div>
-                            </div>
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label for="firstName" class="col-sm-3 control-label" style="white-space:nowrap">First Name</label>
+                                        <div class="col-sm-9">
 
-                            <div class="form-group">
-                                <label for="firstName" class="col-sm-3 control-label">Organization</label>
-                                <div class="col-sm-9">
-                                    <input ng-model="Organization" type="text" id="Organization" placeholder="Organization Name" class="form-control" autofocus>
-                                </div>
-                            </div>
+                                            <div ng-bind="FirstName" ng-show="DisplayMode"></div>
+                                            <div ng-show="EditMode"><input ng-model="FirstName" type="text" style="width: 300px" ng-class="{'validation-error': EmailAddressInputError}" /></div>
 
-                            <div class="form-group">
-                                <label for="birthDate" class="col-sm-3 control-label">Address</label>
-                                <div class="col-sm-9">
-                                    <input ng-model="Address" type="text" id="Address" placeholder="Address" class="form-control">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="birthDate" class="col-sm-3 control-label">Comments</label>
-                                <div class="col-sm-9">
-                                    <textarea ng-model="Comments" name="Comments" cols="40" rows="4" class="form-control" style="width:550px; height:100px"></textarea>
-                                </div>
-                            </div>
-
-                            <!-- /.form-group -->
-                            <div class="form-group">
-                                <div class="col-sm-9 col-sm-offset-3">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input ng-model="AllowNewsLetter" type="checkbox">Send me occasional Emails and Newsletters</a>
-                                        </label>
+                                            <!--<input ng-model="FullName" type="text" id="FullName" placeholder="Full Name" class="form-control">-->
+                                        </div>
                                     </div>
-                                </div>
-                            </div> <!-- /.form-group -->
-                            <div class="form-group">
-                                <div class="col-sm-9 col-sm-offset-3">
-                                    <button type="submit" class="btn btn-primary btn-block" ng-click="registerContact()">Save</button>
-                                </div>
-                            </div>
-                        </form> <!-- /form -->
-                    </td>
-                </tr>
-            </table>
+                                    <div class="form-group">
+                                        <label for="firstName" class="col-sm-3 control-label" style="white-space:nowrap">Last Name</label>
+                                        <div class="col-sm-9">
 
-            <div style="padding-top:0px; padding-bottom:0px">
-                <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)"><div ng-bind-html="MessageBox"></div></alert>
+                                            <div ng-bind="LastName" ng-show="DisplayMode"></div>
+                                            <div ng-show="EditMode"><input ng-model="LastName" type="text" style="width: 300px" ng-class="{'validation-error': EmailAddressInputError}" /></div>
+
+                                            <!--<input ng-model="FullName" type="text" id="FullName" placeholder="Full Name" class="form-control">-->
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="firstName" class="col-sm-3 control-label" style="white-space:nowrap">Phone</label>
+                                        <div class="col-sm-9">
+                                            <div ng-bind="OfficePhone" ng-show="DisplayMode"></div>
+                                            <div ng-show="EditMode"><input ng-model="OfficePhone" type="text" style="width: 300px" ng-class="{'validation-error': EmailAddressInputError}" /></div>
+
+                                            <!--<input ng-model="OfficePhone" type="text" id="OfficePhone" placeholder="Phone Number" class="form-control" autofocus>-->
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="birthDate" class="col-sm-3 control-label" style="white-space:nowrap">Address</label>
+                                        <div class="col-sm-9">
+                                            <div ng-bind="Address" ng-show="DisplayMode"></div>
+                                            <div ng-show="EditMode"><input ng-model="Address" type="text" style="width: 300px" ng-class="{'validation-error': EmailAddressInputError}" /></div>
+
+                                            <!--<input ng-model="Address" type="text" id="Address" placeholder="Address" class="form-control">-->
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email" class="col-sm-3 control-label" style="white-space:nowrap">Email</label>
+                                        <div class="col-sm-9">
+                                            <div ng-bind="Email" ng-show="DisplayMode"></div>
+                                            <div ng-show="EditMode"><input ng-model="Email" type="text" style="width: 300px" ng-class="{'validation-error': EmailAddressInputError}" /></div>
+
+                                            <!--<input ng-model="Email" type="email" id="Email" placeholder="Email" class="form-control" ng-class="{'validation-error': EmailAddressInputError}">-->
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <br />
+                                        <table cellspacing="0" cellpadding="0" border="0">
+                                            <tr>
+                                                <td style="padding-left:100px;"><button type="submit" style="width:80px" class="btn btn-primary btn-block" ng-click="createContact()">Create</button></td>
+                                                <td style="padding-left:15px; "><button type="submit" style="width:80px" class="btn btn-primary btn-block" ng-click="editContact()">Edit</button></td>
+                                                <td style="padding-left:15px; "><button type="submit" style="width:80px" class="btn btn-primary btn-block" ng-click="updateContact()">Update</button></td>
+                                                <td style="padding-left:15px; "><button type="submit" style="width:80px" class="btn btn-primary btn-block" ng-click="cancelChanges()">Cancel</button></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                </form> <!-- /form -->
+                            </td>
+                        </tr>
+                    </table>
+
+
+                    <div style="padding-top:0px; padding-bottom:0px">
+                        <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)"><div ng-bind-html="MessageBox"></div></alert>
+                    </div>
+                </section>
+
             </div>
-        </section>
-
-
-        
-      </div>
-    </div>
-  </main>
+        </div>
+    </main>
 
 </div>
