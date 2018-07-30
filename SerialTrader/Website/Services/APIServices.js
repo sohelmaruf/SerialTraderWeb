@@ -2,6 +2,10 @@
 
     app.register.service('apiService', ['ajaxService', function (ajaxService) {
         
+        this.initializeAPI = function (api, successFunction, errorFunction) {
+            ajaxService.AjaxPost(api, "/api/keys/InitializeAPI", successFunction, errorFunction);
+        };
+
         this.createAPI = function (api, successFunction, errorFunction) {
             ajaxService.AjaxPostWithNoAuthenication(api, "/api/keys/CreateAPI", successFunction, errorFunction);
         };

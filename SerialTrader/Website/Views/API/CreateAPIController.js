@@ -18,13 +18,7 @@ define(['application-configuration', 'apiService', 'alertsService'], function (a
 
                     var key = new Object();
                     key.KEYID = keyID;
-                   // apiService.initializeAPI(key, $scope.initializeAPICompleted, $scope.initializeAPIError);
-
-                    $scope.ACCOUNTID = "";
-                    $scope.EXCHANGE = "";
-                    $scope.APIKEY = "";
-                    $scope.APISECRET = "";
-                    $scope.PASSPHRASE = "";
+                    apiService.initializeAPI(key, $scope.initializeAPICompleted, $scope.initializeAPIError);
                     
                     $scope.setOriginalValues();
 
@@ -40,6 +34,7 @@ define(['application-configuration', 'apiService', 'alertsService'], function (a
                 else {
                     var gAPI = new Object();
                     gAPI.KEYID = keyID;
+                    apiService.initializeAPI(gAPI, $scope.initializeAPICompleted, $scope.initializeAPIError);
                     apiService.getAPI(gAPI, $scope.getAPICompleted, $scope.getAPIError);
                 }
             }
@@ -47,19 +42,14 @@ define(['application-configuration', 'apiService', 'alertsService'], function (a
 
             $scope.initializeAPICompleted = function (response) {
 
-                $scope.EditMode = true;
-                $scope.DisplayMode = false;
-                $scope.ShowCreateButton = true;
-                $scope.ShowEditButton = false;
-                $scope.ShowCancelButton = false;
-                $scope.ShowUpdateButton = false;
-                $scope.ShowDetailsButton = false;
-
-                $scope.ACCOUNTID = "";
-                $scope.EXCHANGE = "";
-                $scope.APIKEY = "";
-                $scope.APISECRET = "";
-                $scope.PASSPHRASE = "";
+                //$scope.EditMode = true;
+                //$scope.DisplayMode = false;
+                //$scope.ShowCreateButton = true;
+                //$scope.ShowEditButton = false;
+                //$scope.ShowCancelButton = false;
+                //$scope.ShowUpdateButton = false;
+                //$scope.ShowDetailsButton = false;
+                
 
                 $scope.ACCOUNTID = response.Key.ACCOUNTID;
                 $scope.EXCHANGE = response.Key.EXCHANGE;
@@ -68,8 +58,9 @@ define(['application-configuration', 'apiService', 'alertsService'], function (a
                 $scope.PASSPHRASE = response.Key.PASSPHRASE;
              
 
-                $scope.Exchanges = response.Key.Exchanges;
+                $scope.Exchanges = response.Exchanges;
 
+                $scope.setDefaultExchange();
                 $scope.setOriginalValues();
             }
 
@@ -81,7 +72,7 @@ define(['application-configuration', 'apiService', 'alertsService'], function (a
             $scope.setDefaultExchange = function () {
 
                 for (var i = 0; i < $scope.Exchanges.length; i++) {
-                    if ($scope.Exchanges[i].EXCHANGEID == $scope.EXCHANGEID) {
+                    if ($scope.Exchanges[i].EXCHANGE == $scope.EXCHANGE) {
                         $scope.EXCHANGE = $scope.Exchanges[i];
                         $scope.selectedExchange = $scope.Exchanges[i].EXCHANGE;
                         break;
@@ -106,7 +97,7 @@ define(['application-configuration', 'apiService', 'alertsService'], function (a
                 $scope.APISECRET = response.Key.APISECRET;
                 $scope.PASSPHRASE = response.Key.PASSPHRASE;
 
-                $scope.Exchanges = response.Key.Exchanges;
+                $scope.Exchanges = response.Exchanges;
 
                 $scope.setDefaultExchange();
                 $scope.setOriginalValues();
@@ -128,6 +119,7 @@ define(['application-configuration', 'apiService', 'alertsService'], function (a
                 $scope.OriginalAPIKEY = $scope.APIKEY;
                 $scope.OriginalAPISECRET = $scope.APISECRET;
                 $scope.OriginalPASSPHRASE = $scope.PASSPHRASE;
+                //$scope.OriginalExchanges = $scope.Exchanges;
             }
 
             $scope.resetValues = function () {
@@ -137,6 +129,7 @@ define(['application-configuration', 'apiService', 'alertsService'], function (a
                 $scope.APIKEY = $scope.OriginalAPIKEY;
                 $scope.APISECRET = $scope.OriginalAPISECRET;
                 $scope.PASSPHRASE = $scope.OriginalPASSPHRASE;
+                //$scope.Exchanges = $scope.OriginalExchanges;
 
                 $scope.setDefaultExchange();
             }
@@ -148,6 +141,11 @@ define(['application-configuration', 'apiService', 'alertsService'], function (a
                 $scope.ShowUpdateButton = true;
                 $scope.EditMode = true;
                 $scope.DisplayMode = false;
+
+
+                //var gAPI = new Object();
+                //gAPI.KEYID = keyID;
+                //apiService.initializeAPI(gAPI, $scope.initializeAPICompleted, $scope.initializeAPIError);
             }
 
             $scope.cancelChanges = function () {

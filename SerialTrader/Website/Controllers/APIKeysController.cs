@@ -28,12 +28,45 @@ namespace Website.Controllers
         private serialtraderEntities db = new serialtraderEntities();
 
         IAPIDataService apiDataService;
+        IExchangeDataService exchangesDataService;
 
         public APIKeysController()
         {
             apiDataService = new APIDataService();
+            exchangesDataService = new ExchangeDataService();
         }
 
+
+        [Route("InitializeAPI")]
+        [WebApiAuthenication]
+        [ValidateModelState]
+        [HttpPost]
+        public HttpResponseMessage InitializeAPI(HttpRequestMessage request, [FromBody] APIInfo objAPIInfo)
+        {
+            TransactionalInformation transaction = new TransactionalInformation();
+            APIBusinessService apiBusinessService = new APIBusinessService(apiDataService);
+            ExchangeBusinessService exchangesBusinessService = new ExchangeBusinessService(exchangesDataService);
+
+            objAPIInfo.IsAuthenicated = true;
+
+            tkey key = apiBusinessService.GetAPI(objAPIInfo.KEYID, out transaction);
+
+            List<texchanx> exchanges = exchangesBusinessService.GetExchanges(out transaction);
+
+            objAPIInfo.Key = key;
+            objAPIInfo.Exchanges = exchanges;
+            objAPIInfo.ReturnStatus = transaction.ReturnStatus;
+            objAPIInfo.ReturnMessage = transaction.ReturnMessage;
+
+            if (transaction.ReturnStatus == true)
+            {
+                var response = Request.CreateResponse<APIInfo>(HttpStatusCode.OK, objAPIInfo);
+                return response;
+            }
+
+            var badResponse = Request.CreateResponse<APIInfo>(HttpStatusCode.BadRequest, objAPIInfo);
+            return badResponse;
+        }
 
         [Route("CreateAPI")]
         [ValidateModelState]
