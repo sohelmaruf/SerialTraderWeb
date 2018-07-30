@@ -247,6 +247,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AdminAPIController.cs" />
+    <Compile Include="Controllers\APIKeysController.cs" />
     <Compile Include="Controllers\ApplicationMenusAPIController.cs" />
     <Compile Include="Controllers\ContactsAPIController.cs" />
     <Compile Include="Controllers\ExchangesApiController.cs" />
@@ -1128,6 +1129,7 @@
     <Content Include="Scripts\i18n\angular-locale_zh.js" />
     <Content Include="Scripts\i18n\angular-locale_zu-za.js" />
     <Content Include="Scripts\i18n\angular-locale_zu.js" />
+    <None Include="Properties\PublishProfiles\FolderProfile2.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
@@ -1162,6 +1164,7 @@
     <Content Include="Services\AdminServices.js" />
     <Content Include="Services\AjaxServices.js" />
     <Content Include="Services\AlertsServices.js" />
+    <Content Include="Services\APIServices.js" />
     <Content Include="Services\ContactsServices.js" />
     <Content Include="Services\CustomersServices.js" />
     <Content Include="Services\DataGridService.js" />
@@ -1189,6 +1192,8 @@
     <Content Include="Views\Accounts\AccountsController.js" />
     <Content Include="Views\API\APIKeys.html" />
     <Content Include="Views\API\APIKeysController.js" />
+    <Content Include="Views\API\CreateAPI.html" />
+    <Content Include="Views\API\CreateAPIController.js" />
     <Content Include="Views\Contacts\Contacts.html" />
     <Content Include="Views\Contacts\ContactsController.js" />
     <Content Include="Views\Contacts\CreateContact.html" />

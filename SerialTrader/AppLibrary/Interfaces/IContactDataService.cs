@@ -10,7 +10,6 @@ using AppLibrary.Common;
 namespace AppLibrary.Interfaces
 {
     public interface IContactDataService : IDataService, IDisposable
-
     {
         void AddContact(contact contact);
         contact GetContact(int ID);

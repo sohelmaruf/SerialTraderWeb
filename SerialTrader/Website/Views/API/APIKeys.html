@@ -1,5 +1,5 @@
 ﻿
-<div ng-controller="tradesController" ng-init="initializeController()">
+<div ng-controller="apiController" ng-init="initializeController()">
 
     <main class="site-main page-main">
         <div class="container">
@@ -9,22 +9,22 @@
                     <table cellspacing="0" cellpadding="0" border="0">
                         <tr>
                             <td style="vertical-align:top">
-                                <h2 class="page-title">MANAGE API KEYS</h2>
+                                <h2 class="page-title">SEARCH API's</h2>
                             </td>
                         </tr>
                     </table>
                     <table class="table" cellspacing="0" cellpadding="0" border="0">
                         <tr>
-                            <td class="input-label-bottom" align="right" style="width:10%"><label>API:</label></td>
+                            <td class="input-label-bottom" align="right" style="width:10%"><label>Exchange:</label></td>
                             <td class="input-box-bottom" style="width:20%">
-                                <input ng-model="OrderID" type="text" style="width: 170px" />
+                                <input ng-model="EXCHANGE" type="text" style="width: 170px" />
                             </td>
-                            <td class="input-label-bottom" align="right" style="width:10%"><label>KEY:</label></td>
+                            <td class="input-label-bottom" align="right" style="width:10%"><label>API-KEY:</label></td>
                             <td class="input-box-bottom" style="width:20%">
-                                <input ng-model="OrderStatus" type="text" style="width: 170px" />
+                                <input ng-model="APIKEY" type="text" style="width: 170px" />
                             </td>
                             <td class="input-label-bottom" style="width:20%; white-space:nowrap">
-                                <button class="btn btn-primary btn-large" ng-click="searchTrades()">Search</button>
+                                <button class="btn btn-primary btn-large" ng-click="searchAPIs()">Search</button>
                                 <button class="btn btn-primary btn-large" ng-click="resetSearchFields()">Reset</button>
                                 <button class="btn btn-primary btn-large" ng-click="createNew()">New</button>
                             </td>
@@ -36,7 +36,7 @@
 
                             <tr>
                                 <th colspan="2" style="width: 50%">
-                                    <span ng-bind="TotalTrades"></span>&nbsp;Trades
+                                    <span ng-bind="TotalAPIs"></span>&nbsp;APIs
                                 </th>
                                 <th colspan="5" style="text-align: right; width: 50%">
                                     Page&nbsp;<span ng-bind="CurrentPageNumber"></span>&nbsp;of&nbsp;
@@ -50,15 +50,18 @@
 
                         </thead>
                         <tbody>
-                            <tr ng-repeat="trade in trades">
-                                <td style="width: 10%; height: 25px"><a ng-href="#Trades/CreateTrade/{{trade.TID}}" style="cursor:pointer; text-decoration:underline; color:black">{{trade.TID}}</a></td>
-                                <td style="width: 20%; white-space: nowrap"><div ng-bind="trade.EXCHANGE"></div></td>
-                                <td style="width: 20%; white-space: nowrap"><div ng-bind="trade.ORDERRESULT"></div></td>
+                            <tr ng-repeat="key in keys">
+                                <td style="width: 10%; height: 25px"><a ng-href="#API/CreateAPI/{{key.KEYID}}" style="cursor:pointer; text-decoration:underline; color:black">{{key.KEYID}}</a></td>
+                                <td style="width: 20%; white-space: nowrap"><div ng-bind="key.ACCOUNTID"></div></td>
+                                <td style="width: 20%; white-space: nowrap"><div ng-bind="key.EXCHANGE"></div></td>
+                                <td style="width: 20%; white-space: nowrap"><div ng-bind="key.APIKEY"></div></td>
+                                <td style="width: 20%; white-space: nowrap"><div ng-bind="key.APISECRET"></div></td>
+                                <td style="width: 20%; white-space: nowrap"><div ng-bind="key.PASSPHRASE"></div></td>
                             </tr>
                         </tbody>
                     </table>
 
-                    <pagination boundary-links="true" total-items="TotalTrades" items-per-page="PageSize" ng-change="pageChanged()" ng-model="CurrentPageNumber" class="pagination-lg" previous-text="Prev" next-text="Next" first-text="First" last-text="Last"></pagination>
+                    <pagination boundary-links="true" total-items="TotalAPIs" items-per-page="PageSize" ng-change="pageChanged()" ng-model="CurrentPageNumber" class="pagination-lg" previous-text="Prev" next-text="Next" first-text="First" last-text="Last"></pagination>
 
                     <div style="padding-top:0px; padding-bottom:0px">
                         <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)"><div ng-bind-html="MessageBox"></div></alert>

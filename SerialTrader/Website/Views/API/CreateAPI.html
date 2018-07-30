@@ -1,0 +1,84 @@
+﻿
+<div ng-controller="createAPIController" ng-init="initializeController()">
+
+  <br />
+  <main class="site-main page-main">
+    <div class="container">
+      <div class="row">
+        <section class="page col-sm-9">
+            <table cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                    <td style="vertical-align:top">
+                        <h2 class="page-title">MANAGE API's</h2>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:top"></td>
+                    <td>
+
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="EXCHANGE" class="col-sm-3 control-label" style="white-space:nowrap">Exchange</label>
+                                <div class="col-sm-9" ng-show="DisplayMode">{{selectedExchange}}</div>
+                                <div class="col-sm-9" ng-show="EditMode">
+                                    <select style="width: 300px" ng-model="EXCHANGE" ng-options="exchange.EXCHANGE for exchange in Exchanges" class="form-control input-md">
+                                        <option value="">-- select an Exchange --</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="APIKEY" class="col-sm-3 control-label" style="white-space:nowrap">API KEY</label>
+                                <div class="col-sm-9">
+                                    <div ng-bind="APIKEY" ng-show="DisplayMode"></div>
+                                    <div ng-show="EditMode"><input ng-model="APIKEY" type="text" style="width: 300px" /></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="APISECRET" class="col-sm-3 control-label" style="white-space:nowrap">API Secret</label>
+                                <div class="col-sm-9">
+                                    <div ng-bind="APISECRET" ng-show="DisplayMode"></div>
+                                    <div ng-show="EditMode"><input ng-model="APISECRET" type="text" style="width: 300px" /></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="PASSPHRASE" class="col-sm-3 control-label" style="white-space:nowrap">Pass Phase</label>
+                                <div class="col-sm-9">
+                                    <div ng-bind="PASSPHRASE" ng-show="DisplayMode"></div>
+                                    <div ng-show="EditMode"><input ng-model="PASSPHRASE" type="text" style="width: 300px" /></div>
+                                </div>
+                            </div>
+                            
+
+                            <div class="form-group">
+                                <br />
+                                <table cellspacing="0" cellpadding="0" border="0">
+                                    <tr>
+                                        <td style="padding-left:100px;"><button type="submit" style="width:80px" class="btn btn-primary btn-block" ng-click="createAPI()">Create</button></td>
+                                        <td style="padding-left:15px; "><button type="submit" style="width:80px" class="btn btn-primary btn-block" ng-click="editAPI()">Edit</button></td>
+                                        <td style="padding-left:15px; "><button type="submit" style="width:80px" class="btn btn-primary btn-block" ng-click="updateAPI()">Update</button></td>
+                                        <td style="padding-left:15px; "><button type="submit" style="width:80px" class="btn btn-primary btn-block" ng-click="cancelChanges()">Cancel</button></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </form> <!-- /form -->
+                    </td>
+                </tr>
+            </table>
+
+            <div style="padding-top:0px; padding-bottom:0px">
+                <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)"><div ng-bind-html="MessageBox"></div></alert>
+            </div>
+        </section>
+
+        
+      </div>
+    </div>
+  </main>
+
+</div>

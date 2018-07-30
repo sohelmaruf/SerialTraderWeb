@@ -81,7 +81,7 @@
           <Key>
             <PropertyRef Name="KEYID" />
           </Key>
-          <Property Name="KEYID" Type="bigint" Nullable="false" />
+          <Property Name="KEYID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ACCOUNTID" Type="bigint" Nullable="false" />
           <Property Name="EXCHANGE" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="APIKEY" Type="varchar" MaxLength="128" Nullable="false" />

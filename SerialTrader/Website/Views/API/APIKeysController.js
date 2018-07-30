@@ -1,23 +1,26 @@
 ﻿"use strict";
 
-define(['application-configuration', 'tradesService', 'alertsService', 'dataGridService'], function (app) {
+define(['application-configuration', 'apiService', 'alertsService', 'dataGridService'], function (app) {
 
-    app.register.controller('tradesController', ['$scope', '$rootScope', 'tradesService', 'alertsService', 'dataGridService',
-        function ($scope, $rootScope, tradesService, alertsService, dataGridService) {
+    app.register.controller('apiController', ['$scope', '$rootScope', 'apiService', 'alertsService', 'dataGridService',
+        function ($scope, $rootScope, apiService, alertsService, dataGridService) {
 
             $scope.initializeController = function () {
 
-                $rootScope.applicationModule = "Trades";
+                $rootScope.applicationModule = "APIs";
 
                 dataGridService.initializeTableHeaders();
 
-                dataGridService.addHeader("ID #", "TID");
-                dataGridService.addHeader("API", "EXCHANGE");
-                dataGridService.addHeader("KEY", "ORDERRESULT");
+                dataGridService.addHeader("Key ID #", "KEYID");
+                dataGridService.addHeader("Account", "ACCOUNTID");
+                dataGridService.addHeader("Exchange", "EXCHANGE");
+                dataGridService.addHeader("Api-Key", "APIKEY");
+                dataGridService.addHeader("Api Secret", "APISECRET");
+                dataGridService.addHeader("Pass Phase", "PASSPHRASE");
 
 
                 $scope.tableHeaders = dataGridService.setTableHeaders();
-                $scope.defaultSort = dataGridService.setDefaultSort("OrderID");
+                $scope.defaultSort = dataGridService.setDefaultSort("KEYID");
 
                 $scope.changeSorting = function (column) {
 
@@ -28,7 +31,7 @@ define(['application-configuration', 'tradesService', 'alertsService', 'dataGrid
                     $scope.SortExpression = dataGridService.getSortExpression();
                     $scope.CurrentPageNumber = 1;
 
-                    $scope.getTrades();
+                    $scope.getAPIs();
                 };
 
 
@@ -36,49 +39,49 @@ define(['application-configuration', 'tradesService', 'alertsService', 'dataGrid
                     return dataGridService.setSortIndicator(column, $scope.defaultSort);
                 };
 
-                $scope.OrderID = "";
-                $scope.OrderStatus = "";
+                $scope.Exchange = "";
+                $scope.ApiKey = "";
 
                 $scope.PageSize = 15;
                 $scope.SortDirection = "DESC";
-                $scope.SortExpression = "ORDERID";
+                $scope.SortExpression = "KEYID";
                 $scope.CurrentPageNumber = 1;
 
                 $rootScope.closeAlert = dataGridService.closeAlert;
 
-                $scope.trades = [];
+                $scope.keys = [];
 
-                $scope.getTrades();
+                $scope.getAPIs();
 
             }
 
-            $scope.tradeInquiryCompleted = function (response, status) {
+            $scope.APIInquiryCompleted = function (response, status) {
 
                 alertsService.RenderSuccessMessage(response.ReturnMessage);
-                $scope.trades = response.Trades;
-                $scope.TotalTrades = response.TotalRows;
+                $scope.keys = response.Keys;
+                $scope.TotalAPIs = response.TotalRows;
                 $scope.TotalPages = response.TotalPages;
             }
 
-            $scope.searchTrades = function () {
+            $scope.searchAPIs = function () {
                 $scope.CurrentPageNumber = 1;
-                $scope.getTrades();
+                $scope.getAPIs();
             }
 
             $scope.pageChanged = function () {
-                $scope.getTrades();
+                $scope.getAPIs();
             }
 
             $scope.createNew = function () {
-                window.location = "#Trades/CreateTrade";
+                window.location = "#API/CreateAPI";
             }
 
-            $scope.getTrades = function () {
-                var tradeInquiry = $scope.createTradeInquiryObject();
-                tradesService.getTrades(tradeInquiry, $scope.tradeInquiryCompleted, $scope.tradeInquiryError);
+            $scope.getAPIs = function () {
+                var apiInquiry = $scope.createAPIInquiryObject();
+                apiService.getAPIs(apiInquiry, $scope.APIInquiryCompleted, $scope.APIInquiryError);
             }
 
-            $scope.tradeInquiryError = function (response, status) {
+            $scope.APIInquiryError = function (response, status) {
                 if (response.IsAuthenicated == false) {
                     window.location = "/index.html";
                 }
@@ -86,23 +89,23 @@ define(['application-configuration', 'tradesService', 'alertsService', 'dataGrid
             }
 
             $scope.resetSearchFields = function () {
-                $scope.OrderID = "";
-                $scope.OrderStatus = "";
-                $scope.getTrades();
+                $scope.Exchange = "";
+                $scope.ApiKey = "";
+                $scope.getAPIs();
             }
 
-            $scope.createTradeInquiryObject = function () {
+            $scope.createAPIInquiryObject = function () {
 
-                var tradeInquiry = new Object();
+                var apiInquiry = new Object();
 
-                tradeInquiry.OrderID = $scope.OrderID;
-                tradeInquiry.OrderStatus = $scope.OrderStatus;
-                tradeInquiry.CurrentPageNumber = $scope.CurrentPageNumber;
-                tradeInquiry.SortExpression = $scope.SortExpression;
-                tradeInquiry.SortDirection = $scope.SortDirection;
-                tradeInquiry.PageSize = $scope.PageSize;
+                apiInquiry.KEYID = $scope.KEYID;
+                apiInquiry.ACCOUNTID = $scope.ACCOUNTID;
+                apiInquiry.EXCHANGE = $scope.EXCHANGE;
+                apiInquiry.APIKEY = $scope.APIKEY;
+                apiInquiry.APISECRET = $scope.APISECRET;
+                apiInquiry.PASSPHRASE = $scope.PASSPHRASE;
 
-                return tradeInquiry;
+                return apiInquiry;
             }
         }]);
 

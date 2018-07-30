@@ -66,6 +66,8 @@
     <Compile Include="Business\ActivityLogBusinessService.cs" />
     <Compile Include="Business\AdminBusinessRules.cs" />
     <Compile Include="Business\AdminBusinessService.cs" />
+    <Compile Include="Business\APIBusinessRules.cs" />
+    <Compile Include="Business\APIBusinessService.cs" />
     <Compile Include="Business\ApplicationInitializationBusinessService.cs" />
     <Compile Include="Business\ContactBusinessRules.cs" />
     <Compile Include="Business\ContactBusinessService.cs" />
@@ -90,6 +92,7 @@
     <Compile Include="Common\WebUtils.cs" />
     <Compile Include="DataServices\ActivityLogDataService.cs" />
     <Compile Include="DataServices\AdminDataService.cs" />
+    <Compile Include="DataServices\APIDataService.cs" />
     <Compile Include="DataServices\ApplicationDataService.cs" />
     <Compile Include="DataServices\ContactDataService.cs" />
     <Compile Include="DataServices\EntityFrameworkDataService.cs" />
@@ -100,6 +103,7 @@
     <Compile Include="DataServices\TradesDataService.cs" />
     <Compile Include="DataServices\UserDataService.cs" />
     <Compile Include="Entity\AdminInfo.cs" />
+    <Compile Include="Entity\APIInfo.cs" />
     <Compile Include="Entity\ApplicationInfo.cs" />
     <Compile Include="Entity\ContactInfo.cs" />
     <Compile Include="Entity\AccountInfo.cs" />
@@ -113,6 +117,7 @@
     <Compile Include="Interfaces\IAccountsDataService.cs" />
     <Compile Include="Interfaces\IActivityLogDataService.cs" />
     <Compile Include="Interfaces\IAdminDataService.cs" />
+    <Compile Include="Interfaces\IAPIDataService.cs" />
     <Compile Include="Interfaces\IApplicationDataService.cs" />
     <Compile Include="Interfaces\IContactDataService.cs" />
     <Compile Include="Interfaces\IExchangeDataService.cs" />

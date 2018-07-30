@@ -12,7 +12,7 @@ define(['application-configuration', 'tradesService', 'alertsService', 'dataGrid
                 dataGridService.initializeTableHeaders();
 
                 dataGridService.addHeader("Trade ID #", "TID");
-                dataGridService.addHeader("Accounte", "ACCOUNTID");
+                dataGridService.addHeader("Account", "ACCOUNTID");
                 dataGridService.addHeader("Exchange", "EXCHANGE");
                 dataGridService.addHeader("Trading Action", "TRADINGACTION");
                 dataGridService.addHeader("Pair", "TRADINGPAIR");
